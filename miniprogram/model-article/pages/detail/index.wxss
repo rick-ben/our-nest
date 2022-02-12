@@ -1,0 +1,35 @@
+/* article/pages/detail/index.wxss */
+.main-swiper{
+  width: 750rpx;
+  height: 562rpx;
+}
+
+.main-swiper-image-body{
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.main-swiper-image{
+  width: 750rpx;
+  height: 562rpx;
+  position: absolute;
+  z-index: 100;
+}
+
+.main-swiper-image-base{
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+  opacity: 0.3;
+}
+
+.publisher-avatar{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.publisher-location{
+  color: var(--nest-PRIMARY);
+  display: flex;
+}

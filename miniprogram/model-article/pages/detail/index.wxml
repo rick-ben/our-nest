@@ -1,0 +1,37 @@
+<!--article/pages/detail/index.wxml-->
+<view data-weui-theme="{{theme}}">
+  <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
+  <mp-gallery show="{{showGallery}}" imgUrls="{{info.images}}" showDelete="{{false}}" current="{{showImageIndex}}"></mp-gallery>
+  <!-- 默认样式 -->
+  <view wx:if="{{!showLoading}}" class="main">
+    <swiper class="main-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="2000" duration="500" easing-function="easeInCubic">
+      <block wx:for="{{info.images}}" wx:key="default_swiper">
+        <swiper-item>
+          <view class="main-swiper-image-body" bindtap="previewImage" data-index="{{index}}">
+            <image class="main-swiper-image" mode="aspectFit" src="{{item}}"></image>
+            <!-- 模糊底图 -->
+            <image class="main-swiper-image-base" mode="aspectFill" src="{{item}}"></image>
+          </view>
+        </swiper-item>
+      </block>
+    </swiper>
+    <!-- 发布者信息 -->
+    <view class="d-flex align-items-center m-3 bg-white p-2 border-radius-base">
+      <image mode="widthFix" class="publisher-avatar border-radius-base" src="{{info.user.avatar?info.user.avatar:'/static/images/icon/default_avatar.png'}}"></image>
+      <view class="d-flex flex-column ml-2 flex-grow-1" >
+        <view class="d-flex align-items-center justify-content-between">
+          <text class="font-xl font-bold">{{info.user.nickname}}</text>
+          <view class="font-base color-grey">{{info.time}}</view>
+        </view>
+        <view class="publisher-location" bindtap="toLocation">
+          <mp-icon type="field" icon="location" size="15" color="#48c7fe"></mp-icon>
+          <text class="font-base ml-1">{{info.location.name}}</text>
+        </view>
+      </view>
+    </view>
+    <!-- 文章内容 -->
+    <view class="m-3 bg-white p-2 border-radius-base text-justify">
+      <text>{{info.content}}</text>
+    </view>
+  </view>
+</view>

@@ -1,0 +1,32 @@
+<!--model-common/pages/user-setting/index.wxml-->
+<view data-weui-theme="{{theme}}">
+  <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
+  <view wx:if="{{!showLoading}}">
+    <mp-form id="form" rules="{{rules}}" models="{{formData}}">
+      <mp-cells title="头像昵称">
+        <mp-cell>
+          <view class="d-flex align-items-center justify-content-between">
+            <view slot="title" class="d-flex align-items-center">
+              <image class="avatar-image mr-2 border-radius-lg" src="{{userInfo.avatar?userInfo.avatar:'/static/images/icon/default_avatar.png'}}"></image>
+              <text class="font-xl font-bold">{{userInfo.nickname?userInfo.nickname:'请更新'}}</text>
+            </view>
+            <view class="d-flex align-items-center">
+              <button class="weui-btn" type="primary" size="mini" bindtap="updateUserInfo">更新</button>
+            </view>
+          </view>
+        </mp-cell>
+      </mp-cells>
+      <mp-cells title="基本信息" wx:if="{{version == 'release'}}">
+        <label>
+          <mp-cell prop="mobile" title="手机号">
+            <input bindinput="formInputChange" data-field="phone" class="weui-input" value="{{userInfo.phone}}" placeholder="请输入手机号" />
+          </mp-cell>
+        </label>
+      </mp-cells>
+    </mp-form>
+
+    <view class="save-btn" slot="button">
+      <button class="weui-btn" type="primary" bindtap="submitForm">保存</button>
+    </view>
+  </view>
+</view>

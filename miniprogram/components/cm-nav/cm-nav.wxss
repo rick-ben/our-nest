@@ -1,0 +1,53 @@
+/* components/cm-nav/cm-nav.wxss */
+
+.navbar{
+  height: 60rpx;
+}
+
+.navbar-fixed{
+  position: fixed;
+  width: 100%;
+  z-index: 10000;
+  top: 0;
+}
+
+.navbar-user{
+  height: 62rpx;
+  width: 200rpx;
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  background-color: #ffffff;
+  margin-left: 30rpx;
+  border-radius: 30rpx;
+  border: 1px solid #e6e6e6;
+  color: #333333;
+  font-size: 26rpx;
+  font-weight: bold;
+}
+
+.navbar-left{
+  height: 62rpx;
+  line-height: 62rpx;
+  width: 200rpx;
+  margin-left: 30rpx;
+}
+
+.userinfo-avatar {
+  overflow: hidden;
+  width: 54rpx;
+  height: 54rpx;
+  margin-left: 6rpx;
+  border-radius: 50%;
+  margin-right: 16rpx;
+}
+
+.clearfix {
+  clear: both;
+}
+
+.clearfix::after {
+  display: block;
+  clear: both;
+  content: "";
+}

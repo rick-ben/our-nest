@@ -1,0 +1,57 @@
+{
+  "pages": [
+    "pages/home/index",
+    "pages/personal/index"
+  ],
+  "subPackages": [
+    {
+      "root": "model-article",
+      "pages": [
+        "pages/deploy/index",
+        "pages/detail/index"
+      ]
+    },
+    {
+      "root": "model-common",
+      "pages": [
+        "pages/user-setting/index"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundColor": "#F6F6F6",
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "我们的小窝",
+    "navigationBarTextStyle": "black"
+  },
+  "useExtendedLib": {
+    "kbone": true,
+    "weui": true
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于文章内容展示"
+    }
+  },
+  "tabBar": {
+    "color": "#333333",
+    "selectedColor": "#48c7fe",
+    "backgroundColor": "#f7f7f7",
+    "list": [{
+      "pagePath": "pages/home/index",
+      "iconPath": "static/images/tabbar/tab1.png",
+      "selectedIconPath": "static/images/tabbar/tab1-s.png",
+      "text": "动态"
+    }, {
+      "pagePath": "pages/personal/index",
+      "iconPath": "static/images/tabbar/tab2.png",
+      "selectedIconPath": "static/images/tabbar/tab2-s.png",
+      "text": "我的"
+    }]
+  },
+  "lazyCodeLoading": "requiredComponents",
+  "darkmode": false,
+  "sitemapLocation": "sitemap.json",
+  "style": "v2"
+}

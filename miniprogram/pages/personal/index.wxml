@@ -1,0 +1,28 @@
+<!--pages/personal/index.wxml-->
+<view data-weui-theme="{{theme}}">
+  <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
+  <cm-nav></cm-nav>
+
+  <!-- 主要内容 -->
+  <view wx:if="{{!showLoading}}" class="main">
+    <!-- 头部信息 -->
+    <view class="d-flex align-items-center justify-content-between m-3">
+      <view class="d-flex align-items-center">
+        <image mode="widthFix" class="publisher-avatar border-radius-lg" src="{{userInfo.avatar?userInfo.avatar:'/static/images/icon/default_avatar.png'}}"></image>
+        <view class="d-flex flex-column ml-3">
+          <text class="font-xl font-bold" bindtap="toSetting">{{userInfo.nickname?userInfo.nickname:'去更新'}}</text>
+          <view class="d-flex align-items-center">
+            <mp-icon type="field" icon="cellphone" size="20" color="#48c7fe"></mp-icon>
+            <view class="color-grey" wx:if="{{userInfo.phone}}">{{userInfo.phone}}</view>
+            <view class="color-grey" wx:else bindtap="toSetting">去设置手机号</view>
+          </view>
+        </view>
+      </view>
+      <mp-icon class="mr-3" type="field" icon="setting" size="30" color="#909399" bindtap="toSetting"></mp-icon>
+    </view>
+    <!-- 按钮导航 -->
+    <view class="buttons m-3">
+      <view class="button-item p-3 bg-white font-lg" wx:for="{{btns}}" wx:key="main_buttons" data-index="{{index}}" bindtap="tapButton">{{item.name}}</view>
+    </view>
+  </view>
+</view>

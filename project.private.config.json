@@ -1,0 +1,46 @@
+{
+  "setting": {},
+  "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
+    "miniprogram": {
+      "list": [
+        {
+          "name": "发布新文章",
+          "pathName": "model-article/pages/deploy/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "文章详情",
+          "pathName": "model-article/pages/detail/index",
+          "query": "id=54ad1eea620769dd0f0595521f2a98a4",
+          "scene": null,
+          "launchMode": "default"
+        },
+        {
+          "name": "个人中心",
+          "pathName": "pages/personal/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "设置用户信息",
+          "pathName": "model-common/pages/user-setting/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

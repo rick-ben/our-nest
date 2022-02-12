@@ -1,0 +1,46 @@
+<!--pages/home/index.wxml-->
+<wxs src="../../utils/tools.wxs" module="tools" />
+<view data-weui-theme="{{theme}}">
+  <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
+  <cm-nav is-fixed>
+    <view slot="left" bindlongtap="toDeploy">我们的小窝</view>
+  </cm-nav>
+
+  <!-- 主要内容 -->
+  <view wx:if="{{!showLoading}}" class="main">
+    <!-- 文章部分 -->
+    <view wx:for="{{articleList}}" wx:key="article_list" bindtap="toArticleDetail" data-id="{{item._id}}" class="bg-white m-3 border-radius-lg p-2">
+      <!-- 发布者信息 -->
+      <view class="d-flex align-items-center justify-content-between">
+        <view class="d-flex align-items-center">
+          <image mode="widthFix" class="publisher-avatar" src="{{item.user.avatar?item.user.avatar:'/static/images/icon/default_avatar.png'}}"></image>
+          <text class="ml-2 font-sm">{{item.user.nickname}}</text>
+        </view>
+        <view class="font-base color-grey">{{item.time}}</view>
+      </view>
+      <!-- 正文简要 -->
+      <view class="d-flex align-items-center mt-2">
+        <text class="content mr-2 font-base">{{tools.setString(item.content, 120)}}</text>
+        <image mode="aspectFit" class="content-thumbnail" wx:if="{{item.files && item.files.length >= 1}}" src="{{item.files[0]}}"></image>
+      </view>
+      <!-- 其他信息 -->
+      <view class="d-flex align-items-center justify-content-between">
+        <view class="publisher-location d-flex align-items-center">
+          <mp-icon type="field" icon="location" size="15" color="#48c7fe"></mp-icon>
+          <text class="font-base ml-1">{{item.location.name}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-loadmore" wx:if="{{loadMoreStatus == 'loading'}}">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" wx:if="{{loadMoreStatus == 'nomore'}}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{footerTip}}</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" wx:if="{{loadMoreStatus == 'more'}}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line" bindtap="loadArticles">下拉加载更多</view>
+    </view>
+  </view>
+</view>

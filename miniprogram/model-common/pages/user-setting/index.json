@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mp-loading": "weui-miniprogram/loading/loading",
+    "mp-cells": "weui-miniprogram/cells/cells",
+    "mp-cell": "weui-miniprogram/cell/cell",
+    "mp-form": "weui-miniprogram/form/form"
+  },
+  "navigationBarTitleText": "设置个人信息"
+}

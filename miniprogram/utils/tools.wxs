@@ -1,0 +1,33 @@
+/**
+ * 数字四舍五入
+ * @param num 数字
+ * @param digit 保留位数
+ */
+var numFixed = function (num, digit = 2) {
+  return num.toFixed(digit);
+}
+
+/**
+ * 截取字符串，多余部分用...代替
+ */
+var setString = function (str, len) {
+  var strlen = 0;
+  var s = "";
+  for (var i = 0; i < str.length; i++) {
+    if (str.charCodeAt(i) > 128) {
+      strlen += 2;
+    } else {
+      strlen++;
+    }
+    s += str.charAt(i);
+    if (strlen >= len) {
+      return s + "...";
+    }
+  }
+  return s;
+}
+
+module.exports={
+  numFixed: numFixed,
+  setString: setString
+};

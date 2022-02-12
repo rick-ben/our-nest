@@ -1,0 +1,10 @@
+/* model-common/pages/user-setting/index.wxss */
+
+.avatar-image{
+  width: 100rpx;
+  height: 100rpx;
+}
+
+.save-btn{
+  margin-top: 100rpx;
+}

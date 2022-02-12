@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "mp-loading": "weui-miniprogram/loading/loading",
+    "cm-nav": "/components/cm-nav/cm-nav",
+    "mp-icon": "weui-miniprogram/icon/icon",
+    "mp-tabbar": "weui-miniprogram/tabbar/tabbar"
+  },
+  "navigationStyle": "custom"
+}

@@ -1,0 +1,17 @@
+/* article/pages/deploy/index.wxss */
+
+.weui-uploader__hd{
+  display: none;
+}
+
+.textarea{
+  min-height: 10rem;
+}
+
+.space-block{
+  height: 400rpx;
+}
+
+.deploy-btn{
+  margin-top: 100rpx;
+}

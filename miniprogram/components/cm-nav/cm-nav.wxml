@@ -1,0 +1,14 @@
+<!--components/cm-nav/cm-nav.wxml-->
+
+<view class="{{isFixed?'navbar-fixed':''}}" style="{{backgroundColor?'background-color:'+backgroundColor+';':''}}">
+  <view class="navbar-user" bindtap="_toLeftBtnPage" style="margin-top:{{top}}px;" wx:if="{{userCenter}}">
+    <view class="userinfo-avatar">
+      <open-data type="userAvatarUrl"></open-data>
+    </view>
+    <text>个人中心</text>
+  </view>
+  <view class="navbar-left" style="margin-top:{{top}}px;" wx:else>
+    <slot name="left"></slot>
+  </view>
+</view>
+<view class="clearfix {{isFixed?'navbar':''}}" style="{{isFixed?'margin-top:'+top+'px':''}}"></view>

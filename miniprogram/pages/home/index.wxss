@@ -1,0 +1,24 @@
+/* pages/home/index.wxss */
+
+.publisher-avatar{
+  width: 40rpx;
+  height: 40rpx;
+}
+
+.content-thumbnail{
+  width: 150rpx;
+  height: 150rpx;
+}
+
+.content{
+  width: 520rpx;
+  text-align: justify;
+  height: 180rpx;
+  overflow:hidden;
+  word-break:break-all;
+  word-wrap:break-word;
+}
+
+.publisher-location{
+  color: var(--nest-PRIMARY);
+}
