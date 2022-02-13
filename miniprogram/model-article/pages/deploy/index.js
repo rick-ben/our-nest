@@ -194,6 +194,9 @@ Page({
       } else if (!this.data.location) {
         setinfo['errorTip'] = '请选择所在位置';
         _this.setData(setinfo);
+      } else {
+        setinfo['errorTip'] = '';
+        _this.setData(setinfo);
       }
     }, 1000);
   },
