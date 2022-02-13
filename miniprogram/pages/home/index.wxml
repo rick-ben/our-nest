@@ -2,7 +2,7 @@
 <wxs src="../../utils/tools.wxs" module="tools" />
 <view data-weui-theme="{{theme}}">
   <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
-  <cm-nav is-fixed>
+  <cm-nav>
     <view slot="left" bindlongtap="toDeploy">我们的小窝</view>
   </cm-nav>
 
