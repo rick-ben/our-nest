@@ -30,7 +30,9 @@ Page({
   },
 
   onReachBottom: function () {
-    this.loadArticles();
+    if (this.data.loadMoreStatus == 'more') {
+      this.loadArticles();
+    }
   },
 
   /**

@@ -13,7 +13,7 @@
       <!-- 发布者信息 -->
       <view class="d-flex align-items-center justify-content-between">
         <view class="d-flex align-items-center">
-          <image mode="widthFix" class="publisher-avatar" src="{{item.user.avatar?item.user.avatar:'/static/images/icon/default_avatar.png'}}"></image>
+          <image mode="widthFix" class="publisher-avatar border-radius-base" src="{{item.user.avatar?item.user.avatar:'/static/images/icon/default_avatar.png'}}"></image>
           <text class="ml-2 font-sm">{{item.user.nickname}}</text>
         </view>
         <view class="font-base color-grey">{{item.time}}</view>

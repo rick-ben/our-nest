@@ -51,7 +51,7 @@
     }]
   },
   "lazyCodeLoading": "requiredComponents",
-  "darkmode": false,
+  "darkmode": true,
   "sitemapLocation": "sitemap.json",
   "style": "v2"
 }
