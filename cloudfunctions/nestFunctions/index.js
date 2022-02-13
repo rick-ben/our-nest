@@ -2,7 +2,6 @@ const getOpenId = require('./getOpenId/index');
 const getUserInfo = require('./getUserInfo/index');
 const addPhotos = require('./addPhotos/index');
 const delPhotos = require('./delPhotos/index');
-const getArticles = require('./getArticles/index');
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -15,7 +14,5 @@ exports.main = async (event, context) => {
       return await addPhotos.main(event, context);
     case 'delPhotos':
       return await delPhotos.main(event, context);
-    case 'getArticles':
-      return await getArticles.main(event, context);
   }
 };

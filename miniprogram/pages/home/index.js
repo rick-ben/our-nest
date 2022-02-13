@@ -5,6 +5,7 @@ const { modal, toast, format } = require('../../utils/util');
 // 连接云数据库
 const db = wx.cloud.database();
 // 获取集合的引用
+const dbArticle = db.collection('article');
 const users = db.collection('users');
 // 数据库操作符
 const _ = db.command;
@@ -55,16 +56,13 @@ Page({
     this.setData({
       loadMoreStatus: 'loading'
     })
-    wx.cloud.callFunction({
-      name: 'nestFunctions',
-      data: {
-        type: 'getArticles',
-        size: 20,
-        page: page
-      }
-    }).then((res) => {
-      console.log(res)
-      let list = res.result.data;
+    let size = 20;
+    let skip = page * size;
+    dbArticle.limit(size)
+    .skip(skip)
+    .orderBy('create_time', 'desc')
+    .get().then((res) => {
+      let list = res.data;
       if (list.length >= 1) {
         let selectNum = 0;
         let dataLen = list.length;

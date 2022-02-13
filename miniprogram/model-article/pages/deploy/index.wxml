@@ -17,6 +17,7 @@
         </mp-cells>
         <view class="deploy-btn">
             <button class="weui-btn" type="primary" bindtap="submitMain" disabled="{{contentLen <= 0 || files.length <= 0 || !location}}">发表</button>
+            <view class="font-sm color-grey text-center mt-3">{{errorTip}}</view>
         </view>
         <view class="space-block"></view>
     </view>

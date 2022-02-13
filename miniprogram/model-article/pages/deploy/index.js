@@ -6,6 +6,8 @@ const db = wx.cloud.database();
 const dbArticle = db.collection('article');
 // 数据库操作符
 const _ = db.command;
+
+var checkDataI;
 Page({
   mixins: [require('../../../mixin/common')],
   /**
@@ -16,7 +18,8 @@ Page({
     files: [],
     content: "",
     contentLen: 0,
-    location: ""
+    location: "",
+    errorTip: ""
   },
 
   /**
@@ -27,6 +30,7 @@ Page({
       selectFile: this.selectFile.bind(this),
       uplaodFile: this.uplaodFile.bind(this)
     })
+    this.checkData();
   },
 
   /**
@@ -174,6 +178,28 @@ Page({
       })
     })
   },
+  /**
+   * 检查文章内容是否已填完
+   */
+  checkData(){
+    let _this = this;
+    let setinfo = {};
+    checkDataI = setInterval(() => {
+      if (this.data.contentLen <= 0) {
+        setinfo['errorTip'] = '请输入正文';
+        _this.setData(setinfo);
+      } else if (this.data.files.length <= 0) {
+        setinfo['errorTip'] = '请选择图片';
+        _this.setData(setinfo);
+      } else if (!this.data.location) {
+        setinfo['errorTip'] = '请选择所在位置';
+        _this.setData(setinfo);
+      }
+    }, 1000);
+  },
+  onUnload(){
+    clearInterval(checkDataI);
+  },
   uploadError(e) {
     console.log('upload error', e.detail)
   },
@@ -200,6 +226,7 @@ Page({
         id: res._id
       })
       toast('发表成功！', 2000).then(ret=>{
+        clearInterval(checkDataI);
         setTimeout(() => {
           wx.reLaunch({
             url: '/model-article/pages/detail/index?id='+res._id
