@@ -3,7 +3,7 @@
 page {
 	--weui-BG-0: #ededed;
 	--weui-BG-1: #f7f7f7;
-	--weui-BG-2: #f3f4f6 !important;
+	--weui-BG-2: #fafafa !important;
 	--weui-BG-3: #f7f7f7;
 	--weui-BG-4: #4c4c4c;
 	--weui-BG-5: #fff;

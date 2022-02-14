@@ -16,15 +16,15 @@
           "name": "发布新文章",
           "pathName": "model-article/pages/deploy/index",
           "query": "",
-          "launchMode": "default",
-          "scene": null
+          "scene": null,
+          "launchMode": "default"
         },
         {
           "name": "文章详情",
           "pathName": "model-article/pages/detail/index",
           "query": "id=54ad1eea620769dd0f0595521f2a98a4",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "个人中心",

@@ -17,7 +17,7 @@
     </swiper>
     <!-- 发布者信息 -->
     <view class="d-flex align-items-center m-3 bg-white p-2 border-radius-base">
-      <image mode="widthFix" class="publisher-avatar border-radius-base" src="{{info.user.avatar?info.user.avatar:'/static/images/icon/default_avatar.png'}}"></image>
+      <image mode="widthFix" class="publisher-avatar border-radius-lg" src="{{info.user.avatar?info.user.avatar:'/static/images/icon/default_avatar.png'}}"></image>
       <view class="d-flex flex-column ml-2 flex-grow-1" >
         <view class="d-flex align-items-center justify-content-between">
           <text class="font-xl font-bold">{{info.user.nickname}}</text>
