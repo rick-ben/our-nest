@@ -132,6 +132,15 @@ module.exports = {
     this.setData({
       theme,
     });
+    if (theme == 'dark') {
+      wx.setNavigationBarColor({
+        backgroundColor: '#1f1f1f',
+        frontColor: '#ffffff'
+      })
+      wx.setTabBarStyle({
+        backgroundColor: '#1e1e1e',
+      })
+    }
   },
   /**
    * 页面加载
