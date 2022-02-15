@@ -139,6 +139,7 @@ module.exports = {
       })
       wx.setTabBarStyle({
         backgroundColor: '#1e1e1e',
+        color: '#f6f6f6'
       })
     }
   },
