@@ -19,6 +19,15 @@
   word-wrap:break-word;
 }
 
+.content-only-text{
+  width: 100%;
+  text-align: justify;
+  height: auto;
+  overflow:hidden;
+  word-break:break-all;
+  word-wrap:break-word;
+}
+
 .publisher-location{
   color: var(--nest-PRIMARY);
 }

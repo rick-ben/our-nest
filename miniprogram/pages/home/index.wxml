@@ -3,7 +3,7 @@
 <view data-weui-theme="{{theme}}">
   <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
   <cm-nav>
-    <view slot="left" bindlongtap="toDeploy">我们的小窝</view>
+    <view slot="left" bindtap="toDeploy" bindlongtap="toDeployText">小窝({{articleTotal}})</view>
   </cm-nav>
 
   <!-- 主要内容 -->
@@ -20,7 +20,8 @@
       </view>
       <!-- 正文简要 -->
       <view class="d-flex align-items-center mt-2">
-        <text class="content mr-2 font-base">{{tools.setString(item.content, 120)}}</text>
+        <text class="content mr-2 font-base" wx:if="{{item.files}}">{{tools.setString(item.content, 120)}}</text>
+        <text class="content-only-text font-base mb-2" wx:else>{{tools.setString(item.content, 150)}}</text>
         <image mode="aspectFit" class="content-thumbnail" wx:if="{{item.files && item.files.length >= 1}}" src="{{item.files[0]}}"></image>
       </view>
       <!-- 其他信息 -->

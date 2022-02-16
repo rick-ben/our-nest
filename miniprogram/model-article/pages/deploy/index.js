@@ -19,7 +19,8 @@ Page({
     content: "",
     contentLen: 0,
     location: "",
-    errorTip: ""
+    errorTip: "",
+    onlyText: false
   },
 
   /**
@@ -43,6 +44,11 @@ Page({
       this.setData({
         showLoading: false
       })
+      if (this.data.options.text == 1) {
+        this.setData({
+          onlyText: true
+        })
+      }
     }
   },
 
@@ -188,7 +194,7 @@ Page({
       if (this.data.contentLen <= 0) {
         setinfo['errorTip'] = '请输入正文';
         _this.setData(setinfo);
-      } else if (this.data.files.length <= 0) {
+      } else if (this.data.files.length <= 0 && !this.data.onlyText) {
         setinfo['errorTip'] = '请选择图片';
         _this.setData(setinfo);
       } else if (!this.data.location) {
@@ -214,13 +220,17 @@ Page({
    */
   submitMain(){
     let _this = this;
+    let from = {};
     loading('请稍等...');
+    if (this.data?.files >= 1) {
+      from['files'] = this.data.files;
+    }
     dbArticle.add({
       data: {
         content: this.data.content,
-        files: this.data.files,
         location: this.data.location,
-        create_time: db.serverDate()
+        create_time: db.serverDate(),
+        ...from
       }
     }).then(res=>{
       _this.api('deployNotice', {

@@ -4,7 +4,7 @@
   <mp-gallery show="{{showGallery}}" imgUrls="{{info.images}}" showDelete="{{false}}" current="{{showImageIndex}}"></mp-gallery>
   <!-- 默认样式 -->
   <view wx:if="{{!showLoading}}" class="main">
-    <swiper class="main-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="2000" duration="500" easing-function="easeInCubic">
+    <swiper wx:if="{{info.images.length >= 1}}" class="main-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="2000" duration="500" easing-function="easeInCubic">
       <block wx:for="{{info.images}}" wx:key="default_swiper">
         <swiper-item>
           <view class="main-swiper-image-body" bindtap="previewImage" data-index="{{index}}">

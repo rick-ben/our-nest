@@ -114,6 +114,11 @@ Page({
     }).catch((e) => {
       toast("数据加载失败", e);
     });
+    dbArticle.count().then(res=>{
+      this.setData({
+        articleTotal: res.total
+      })
+    })
   },
 
   /**
@@ -123,6 +128,17 @@ Page({
     if (this.data.userInfo.auth_deploy) {
       wx.navigateTo({
         url: '/model-article/pages/deploy/index'
+      })
+    }
+  },
+
+  /**
+   * 跳转到发布页面
+   */
+  toDeployText: function () {
+    if (this.data.userInfo.auth_deploy) {
+      wx.navigateTo({
+        url: '/model-article/pages/deploy/index?text=1'
       })
     }
   },

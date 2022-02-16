@@ -85,7 +85,7 @@ module.exports = {
       setinfo['isAndroid'] = true;
     }
     // 设置用户信息
-    if (app.globalData.userInfo){
+    if (app.globalData.userInfo || app.globalData.scene == 1154){
       setinfo['userInfo'] = app.globalData.userInfo;
       success(that, setinfo);
     } else {
@@ -137,10 +137,15 @@ module.exports = {
         backgroundColor: '#1f1f1f',
         frontColor: '#ffffff'
       })
-      wx.setTabBarStyle({
-        backgroundColor: '#1e1e1e',
-        color: '#f6f6f6'
-      })
+      let pages = getCurrentPages();
+      let currPage = pages[pages.length-1].route;
+      let tabPages = ["pages/home/index","pages/personal/index"];
+      if (tabPages.indexOf(currPage) >= 0) {
+        wx.setTabBarStyle({
+          backgroundColor: '#1e1e1e',
+          color: '#f6f6f6'
+        })
+      }
     }
   },
   /**

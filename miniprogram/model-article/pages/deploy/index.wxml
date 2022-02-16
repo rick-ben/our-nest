@@ -7,7 +7,7 @@
             <textarea auto-height class="weui-textarea textarea" maxlength="10000" bindinput="inputContent" value="{{content}}" placeholder="这一刻的想法…" />
             <view class="weui-textarea-counter">{{contentLen}}/5000</view>
         </mp-cell>
-        <mp-cell>
+        <mp-cell wx:if="{{!onlyText}}">
             <mp-uploader bindfail="uploadError" binddelete="deleteFile" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" max-count="9" title="图片上传"></mp-uploader>
         </mp-cell>
         <mp-cells>
@@ -16,7 +16,7 @@
             </mp-cell>
         </mp-cells>
         <view class="deploy-btn">
-            <button class="weui-btn" type="primary" bindtap="submitMain" disabled="{{contentLen <= 0 || files.length <= 0 || !location}}">发表</button>
+            <button class="weui-btn" type="primary" bindtap="submitMain" disabled="{{errorTip != ''}}">发表</button>
             <view class="font-sm color-grey text-center mt-3">{{errorTip}}</view>
         </view>
         <view class="space-block"></view>
