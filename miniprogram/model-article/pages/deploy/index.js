@@ -222,16 +222,14 @@ Page({
     let _this = this;
     let from = {};
     loading('请稍等...');
-    if (this.data?.files >= 1) {
+    if (this.data?.files.length >= 1) {
       from['files'] = this.data.files;
     }
+    from['content'] = this.data.content;
+    from['location'] = this.data.location;
+    from['create_time'] = db.serverDate();
     dbArticle.add({
-      data: {
-        content: this.data.content,
-        location: this.data.location,
-        create_time: db.serverDate(),
-        ...from
-      }
+      data: from
     }).then(res=>{
       _this.api('deployNotice', {
         phone: _this.data.userInfo.phone,
