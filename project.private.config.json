@@ -16,8 +16,8 @@
           "name": "发布新文章",
           "pathName": "model-article/pages/deploy/index",
           "query": "",
-          "scene": null,
-          "launchMode": "default"
+          "launchMode": "default",
+          "scene": null
         },
         {
           "name": "文章详情",
@@ -39,6 +39,20 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "相册",
+          "pathName": "pages/album/index",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "动态相册",
+          "pathName": "model-album/pages/detail/index",
+          "query": "id=54ad1eea6207c77e0f1406771b092611",
+          "scene": null,
+          "launchMode": "default"
         }
       ]
     }

@@ -1,10 +1,10 @@
 {
   "pages": [
     "pages/home/index",
-    "pages/personal/index"
+    "pages/personal/index",
+    "pages/album/index"
   ],
-  "subPackages": [
-    {
+  "subPackages": [{
       "root": "model-article",
       "pages": [
         "pages/deploy/index",
@@ -16,6 +16,12 @@
       "pages": [
         "pages/user-setting/index"
       ]
+    },
+    {
+      "root": "model-album",
+      "pages": [
+        "pages/detail/index"
+      ]
     }
   ],
   "window": {
@@ -26,7 +32,6 @@
     "navigationBarTextStyle": "black"
   },
   "useExtendedLib": {
-    "kbone": true,
     "weui": true
   },
   "permission": {
@@ -39,16 +44,24 @@
     "selectedColor": "#48c7fe",
     "backgroundColor": "#f7f7f7",
     "list": [{
-      "pagePath": "pages/home/index",
-      "iconPath": "static/images/tabbar/tab1.png",
-      "selectedIconPath": "static/images/tabbar/tab1-s.png",
-      "text": "动态"
-    }, {
-      "pagePath": "pages/personal/index",
-      "iconPath": "static/images/tabbar/tab2.png",
-      "selectedIconPath": "static/images/tabbar/tab2-s.png",
-      "text": "我的"
-    }]
+        "pagePath": "pages/home/index",
+        "iconPath": "static/images/tabbar/tab1.png",
+        "selectedIconPath": "static/images/tabbar/tab1-s.png",
+        "text": "动态"
+      },
+      {
+        "pagePath": "pages/album/index",
+        "iconPath": "static/images/tabbar/tab3.png",
+        "selectedIconPath": "static/images/tabbar/tab3-s.png",
+        "text": "相册"
+      },
+      {
+        "pagePath": "pages/personal/index",
+        "iconPath": "static/images/tabbar/tab2.png",
+        "selectedIconPath": "static/images/tabbar/tab2-s.png",
+        "text": "我的"
+      }
+    ]
   },
   "lazyCodeLoading": "requiredComponents",
   "darkmode": true,

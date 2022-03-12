@@ -7,6 +7,8 @@ module.exports = {
     isAndroid: false, // 是否是安卓设备
     theme: 'light', //主题：light=白色；dark=黑色
     options: {},  //页面启动参数
+    colorPrimary: "#48c7fe",  //主色
+    colorGrey: "#909399", //灰色
   },
   /**
    * 请求接口
@@ -133,6 +135,10 @@ module.exports = {
       theme,
     });
     if (theme == 'dark') {
+      this.setData({
+        colorPrimary: "#47a4cc",
+        colorGrey: "#7c7c7c"
+      });
       wx.setNavigationBarColor({
         backgroundColor: '#1f1f1f',
         frontColor: '#ffffff'

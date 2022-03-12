@@ -12,13 +12,13 @@
         <view class="d-flex flex-column ml-3">
           <text class="font-xl font-bold" bindtap="toSetting">{{userInfo.nickname?userInfo.nickname:'去更新'}}</text>
           <view class="d-flex align-items-center">
-            <mp-icon type="field" icon="cellphone" size="20" color="#48c7fe"></mp-icon>
+            <mp-icon type="field" icon="cellphone" size="20" color="{{colorPrimary}}"></mp-icon>
             <view class="color-grey" wx:if="{{userInfo.phone}}">{{userInfo.phone}}</view>
             <view class="color-grey" wx:else bindtap="toSetting">去设置手机号</view>
           </view>
         </view>
       </view>
-      <mp-icon class="mr-3" type="field" icon="setting" size="30" color="#909399" bindtap="toSetting"></mp-icon>
+      <mp-icon class="mr-3" type="field" icon="setting" size="30" color="{{colorGrey}}" bindtap="toSetting"></mp-icon>
     </view>
     <!-- 按钮导航 -->
     <view class="buttons m-3">

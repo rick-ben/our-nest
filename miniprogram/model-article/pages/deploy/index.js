@@ -231,6 +231,7 @@ Page({
     dbArticle.add({
       data: from
     }).then(res=>{
+      // 调用api接口通过公众号模板消息提醒新文章发布
       _this.api('deployNotice', {
         phone: _this.data.userInfo.phone,
         ss: '20220212210139PM',

@@ -1,0 +1,16 @@
+/* pages/album/index.wxss */
+.album-image{
+  width: 210rpx;
+  height: 372rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.album-image > image{
+  width: 150rpx;
+}
+
+.album-text{
+  width: 210rpx;
+}

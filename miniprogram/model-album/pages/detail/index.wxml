@@ -1,0 +1,40 @@
+<!--model-album/pages/detail/index.wxml-->
+<view data-weui-theme="{{theme}}">
+  <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
+
+  <!-- 照片列表 -->
+  <view class="d-flex flex-wrap m-3 mt-0 mr-0">
+    <view class="mt-3 mr-3" wx:for="{{list}}" wx:key="albums" data-index="{{index}}" bindtap="previewImage">
+      <view class="album-image border-radius-lg">
+        <image class="album-image-main" src="{{item.url}}" mode="aspectFit"></image>
+        <image class="album-image-base" src="{{item.url}}" mode="aspectFill"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 侧边栏 -->
+  <view class="sidebar p-3" wx:if="{{isAdmin}}">
+    <view class="mb-3" wx:if="{{albumData.name != 'common'}}">
+      <mp-icon type="field" icon="add" size="30" color="{{colorPrimary}}"></mp-icon>
+    </view>
+    <view>
+      <mp-icon type="field" icon="group-detail" size="30" color="{{colorPrimary}}"></mp-icon>
+    </view>
+    <view class="mt-3">
+      <mp-icon type="field" icon="setting" size="30" color="{{colorPrimary}}"></mp-icon>
+    </view>
+  </view>
+
+  <view>
+    <view class="weui-loadmore" wx:if="{{loadMoreStatus == 'loading'}}">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" wx:if="{{loadMoreStatus == 'nomore'}}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{footerTip}}</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" wx:if="{{loadMoreStatus == 'more'}}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line" bindtap="loadArticles">下拉加载更多</view>
+    </view>
+  </view>
+</view>

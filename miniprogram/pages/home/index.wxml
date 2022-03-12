@@ -27,7 +27,7 @@
       <!-- 其他信息 -->
       <view class="d-flex align-items-center justify-content-between">
         <view class="publisher-location d-flex align-items-center">
-          <mp-icon type="field" icon="location" size="15" color="#48c7fe"></mp-icon>
+          <mp-icon type="field" icon="location" size="15" color="{{colorPrimary}}"></mp-icon>
           <text class="font-base ml-1">{{item.location.name}}</text>
         </view>
       </view>

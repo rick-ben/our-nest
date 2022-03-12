@@ -43,6 +43,7 @@ async function addPhotos(openid, files, album = 'common') {
     if (res.data.length <= 0) {
       let addObj = {
         _openid: openid,
+        member: [openid],
         name: album,
         alias: '',
         create_time: db.serverDate()

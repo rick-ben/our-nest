@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "mp-loading": "weui-miniprogram/loading/loading"
+  },
+  "navigationBarTitleText": "我们的回忆"
+}

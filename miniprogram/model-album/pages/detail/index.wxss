@@ -1,0 +1,34 @@
+/* model-album/pages/detail/index.wxss */
+.album-image{
+  width: 210rpx;
+  height: 372rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.album-image-main{
+  width: 210rpx;
+  position: absolute;
+  z-index: 100;
+}
+
+.album-image-base{
+  width: 100%;
+  height: 100%;
+  filter: blur(5px);
+  opacity: 0.2;
+}
+
+/* 侧边栏 */
+.sidebar{
+  position: fixed;
+  right: 30rpx;
+  bottom: 150rpx;
+  z-index: 100;
+  background-color: var(--nest-WHITE);
+  border-radius: 30rpx;
+}
+/* 侧边栏 */

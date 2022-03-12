@@ -1,0 +1,36 @@
+<!--pages/album/index.wxml-->
+<view data-weui-theme="{{theme}}">
+  <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
+
+  <view class="d-flex flex-wrap m-3 mt-0 mr-0">
+    <view class="mt-3 mr-3" wx:for="{{list}}" wx:key="albums" data-id="{{item._id}}" bindtap="toDetail">
+      <view class="album-image bg-white border-radius-lg">
+        <image src="/static/images/icon/default_album_{{theme}}.png" mode="aspectFit"></image>
+      </view>
+      <view class="album-text text-center mt-2">
+        <text class="font-base">{{item.alias}}</text>
+      </view>
+    </view>
+    <view class="mt-3 mr-3" bindtap="toCreateAlbum">
+      <view class="album-image bg-white border-radius-lg">
+        <image src="/static/images/icon/album_create_{{theme}}.png" mode="aspectFit"></image>
+      </view>
+      <view class="album-text text-center mt-2">
+        <text class="font-base">新建相册</text>
+      </view>
+    </view>
+  </view>
+
+  <view>
+    <view class="weui-loadmore" wx:if="{{loadMoreStatus == 'loading'}}">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" wx:if="{{loadMoreStatus == 'nomore'}}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{footerTip}}</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" wx:if="{{loadMoreStatus == 'more'}}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line" bindtap="loadArticles">下拉加载更多</view>
+    </view>
+  </view>
+</view>
