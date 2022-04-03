@@ -17,7 +17,7 @@
     <view wx:if="{{albumData.name != 'common'}}">
       <mp-icon type="field" icon="add2" size="30" color="{{colorPrimary}}"></mp-icon>
     </view>
-    <view class="{{albumData.name != 'common' ? 'mt-3' : ''}}" bindtap="toAlbumSetting">
+    <view class="{{albumData.name != 'common' ? 'mt-3' : ''}}" wx:if="{{albumData._openid == userInfo._openid}}" bindtap="toAlbumSetting">
       <mp-icon type="field" icon="setting" size="30" color="{{colorPrimary}}"></mp-icon>
     </view>
   </view>

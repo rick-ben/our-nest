@@ -108,7 +108,7 @@ Page({
           if (page == 0) {
             setinfo['list'] = list;
           } else {
-            setinfo['list'] = [_this.data.list, ...list];
+            setinfo['list'] = [..._this.data.list, ...list];
           }
           setinfo['page'] = page += 1
           setinfo['showLoading'] = false;
