@@ -14,13 +14,10 @@
 
   <!-- 侧边栏 -->
   <view class="sidebar p-3" wx:if="{{isAdmin}}">
-    <view class="mb-3" wx:if="{{albumData.name != 'common'}}">
-      <mp-icon type="field" icon="add" size="30" color="{{colorPrimary}}"></mp-icon>
+    <view wx:if="{{albumData.name != 'common'}}">
+      <mp-icon type="field" icon="add2" size="30" color="{{colorPrimary}}"></mp-icon>
     </view>
-    <view>
-      <mp-icon type="field" icon="group-detail" size="30" color="{{colorPrimary}}"></mp-icon>
-    </view>
-    <view class="mt-3">
+    <view class="{{albumData.name != 'common' ? 'mt-3' : ''}}" bindtap="toAlbumSetting">
       <mp-icon type="field" icon="setting" size="30" color="{{colorPrimary}}"></mp-icon>
     </view>
   </view>

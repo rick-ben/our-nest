@@ -1,0 +1,5 @@
+/* model-album/pages/setting/index.wxss */
+.album-cover{
+  width: 10rpx;
+  height: 90rpx;
+}

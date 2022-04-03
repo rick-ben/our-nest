@@ -2,8 +2,8 @@
  * 转换格式"key:value;"的数据为数组对象
  * @param {*} xdata 
  */
-export function transitionXdata(xdata){
-  if(xdata == "" || xdata.indexOf(":") == -1) return xdata;
+export function transitionXdata(xdata) {
+  if (xdata == "" || xdata.indexOf(":") == -1) return xdata;
   var dataobj = {};
   xdata = xdata.split(";");
   for (var i = 0; i < xdata.length; i++) {
@@ -110,7 +110,7 @@ export function filterDataList(config = {}) {
  * 获取窗口高度
  * @param {number} minus 要减去的高度
  */
-export function getWinHeight(minus){
+export function getWinHeight(minus) {
   let globalData = getApp().globalData;
   let pixelRatio = globalData.pixelRatio;
   let sys = globalData.sys;
@@ -122,14 +122,14 @@ export function getWinHeight(minus){
  * @param {number|array|string} flag 授权类型1->消息通知,2->订单通知
  * @param {boolean} check 是否开启验证模式，为true则验证是否拥有对应的权限
  */
-export function autoAuthSubscript(flag = 0, check = false){
+export function autoAuthSubscript(flag = 0, check = false) {
   return new Promise((reslove, reject) => {
-    if (typeof flag != "object"){
+    if (typeof flag != "object") {
       flag = [flag];
     }
     let baseinfo = getApp().globalData.baseinfo;
     if (baseinfo.hasOwnProperty('tempMsg') && baseinfo.tempMsg) {
-      if (flag[0] != 0 && !check){
+      if (flag[0] != 0 && !check) {
         let tempFlag = [];
         flag.forEach(element => {
           tempFlag.push(getFlag(element));
@@ -138,25 +138,25 @@ export function autoAuthSubscript(flag = 0, check = false){
       } else {
         wx.getSetting({
           withSubscriptions: true,
-          success (res) {
+          success(res) {
             let subscript = res.subscriptionsSetting;
             if (subscript && typeof subscript.mainSwitch != 'undefined' && subscript.mainSwitch) {
-              if (check){
+              if (check) {
                 for (let i = 0; i < flag.length; i++) {
                   const element = flag[i];
                   let tempCode = getFlag(element);
-                  if (!subscript.hasOwnProperty(tempCode) || subscript[tempCode] != "accept"){
+                  if (!subscript.hasOwnProperty(tempCode) || subscript[tempCode] != "accept") {
                     return reject("订阅失败");
                   }
                 }
                 return reslove("订阅成功");
               } else {
                 let temp = [baseinfo.tempFlag1, baseinfo.tempFlag2];
-                if (subscript.hasOwnProperty(temp[0]) && subscript[temp[0]] == "accept" && subscript.hasOwnProperty(temp[1]) && subscript[temp[1]] == "accept"){
-                  auth([temp[0],temp[1]]);
-                } else if (subscript.hasOwnProperty(temp[0]) && subscript[temp[0]] == "accept"){
+                if (subscript.hasOwnProperty(temp[0]) && subscript[temp[0]] == "accept" && subscript.hasOwnProperty(temp[1]) && subscript[temp[1]] == "accept") {
+                  auth([temp[0], temp[1]]);
+                } else if (subscript.hasOwnProperty(temp[0]) && subscript[temp[0]] == "accept") {
                   auth([temp[0]]);
-                } else if (subscript.hasOwnProperty(temp[1]) && subscript[temp[1]] == "accept"){
+                } else if (subscript.hasOwnProperty(temp[1]) && subscript[temp[1]] == "accept") {
                   auth([temp[1]]);
                 } else {
                   reject("静默订阅失败");
@@ -168,7 +168,7 @@ export function autoAuthSubscript(flag = 0, check = false){
           }
         })
       }
-      function auth(tmplIds){
+      function auth(tmplIds) {
         wx.requestSubscribeMessage({
           tmplIds: tmplIds,
           success(res) {
@@ -179,9 +179,9 @@ export function autoAuthSubscript(flag = 0, check = false){
           }
         })
       }
-      function getFlag(f){
+      function getFlag(f) {
         f = String(f);
-        switch(f){
+        switch (f) {
           case "2":
             return baseinfo.tempFlag2;
           default:
@@ -277,11 +277,11 @@ export function getSysPermission(scope) {
         reslove();
       },
       fail() {
-        modal("提示", '您未授权'+scopeList[scope]+'，功能将无法使用',"去授权","取消").then(ret=>{
+        modal("提示", '您未授权' + scopeList[scope] + '，功能将无法使用', "去授权", "取消").then(ret => {
           wx.openSetting({
             success: (res) => {
               if (!res.authSetting[scope]) {
-                modal("提示","您未授权"+scopeList[scope]+"，功能将无法使用");
+                modal("提示", "您未授权" + scopeList[scope] + "，功能将无法使用");
                 reject();
               } else {
                 reslove();
@@ -291,7 +291,7 @@ export function getSysPermission(scope) {
               reject();
             }
           })
-        }).catch(err=>{
+        }).catch(err => {
           reject();
         })
       }
@@ -304,16 +304,16 @@ export function getSysPermission(scope) {
  * @param {*} minNum 
  * @param {*} maxNum 
  */
-export function randomNum(minNum,maxNum){ 
-  switch(arguments.length){ 
-    case 1: 
-      return parseInt(Math.random()*minNum+1,10); 
-    case 2: 
-      return parseInt(Math.random()*(maxNum-minNum+1)+minNum,10); 
-    default: 
-      return 0; 
-  } 
-} 
+export function randomNum(minNum, maxNum) {
+  switch (arguments.length) {
+    case 1:
+      return parseInt(Math.random() * minNum + 1, 10);
+    case 2:
+      return parseInt(Math.random() * (maxNum - minNum + 1) + minNum, 10);
+    default:
+      return 0;
+  }
+}
 
 /**
  * 截取字符串，多余部分用...代替
@@ -339,14 +339,14 @@ export function setString(str, len) {
  * 获取字符串长度
  * @param value 字符串
  */
-export function stringLength(value){
+export function stringLength(value) {
   if (!value) return 0;
   var len = 0, code = 0;
-  for(var i = 0; i < value.length; i++){
+  for (var i = 0; i < value.length; i++) {
     code = value.charCodeAt(i);
-    if(code >= 0 && code <= 127){
+    if (code >= 0 && code <= 127) {
       len += 1;
-    }else{
+    } else {
       len += 2;
     }
   }
@@ -386,7 +386,7 @@ export function toast(title, d = 2000, i = 'none', img = '', mask = false) {
  * @param firt 主按钮文字
  * @param cant 次按钮文字(不填则不显示)
  */
-export function modal(title, cnt='', firt = '确定', cant = false) {
+export function modal(title, cnt = '', firt = '确定', cant = false) {
   return new Promise((reslove, reject) => {
     wx.showModal({
       title: title,
@@ -441,26 +441,26 @@ export function trim(s) {
  * 保存图片文件到本机
  * @param imageUrl 图片路径
  */
-export function savePhotoFile(imageUrl){
+export function savePhotoFile(imageUrl) {
   return new Promise((reslove, reject) => {
-    getSysPermission('scope.writePhotosAlbum').then(res=>{
+    getSysPermission('scope.writePhotosAlbum').then(res => {
       exportFile();
-    }).catch(err=>{
+    }).catch(err => {
       reject();
     })
     // 获取文件临时地址
-    function exportFile(){
+    function exportFile() {
       loading("保存中...");
       downloadFile(imageUrl)
-        .then(url=>{
+        .then(url => {
           save(url);
         })
-        .catch(res=>{
+        .catch(res => {
           reject();
         })
     }
     // 保存
-    function save(filePath){
+    function save(filePath) {
       wx.saveImageToPhotosAlbum({
         filePath: filePath,
         success: (res) => {
@@ -478,7 +478,7 @@ export function savePhotoFile(imageUrl){
  * 下载文件到本地
  * @param {String} url 需要下载的网络链接地址
  */
-export function downloadFile(url){
+export function downloadFile(url) {
   return new Promise((resolve, reject) => {
     if (isNetworkUrl(url)) {
       wx.downloadFile({
@@ -505,7 +505,7 @@ export function downloadFile(url){
  * 验证是否是网络资源
  * @param {String} url 链接
  */
-export function isNetworkUrl(url){
+export function isNetworkUrl(url) {
   var isFormwork = true;//是否是网络资源
   try {
     //判断本地是否存在该文件
@@ -528,7 +528,7 @@ export function checkIdCardNumber(value) {
     let re = new RegExp(/^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/);
     var arrSplit = value.match(re);  //检查生日日期是否正确，value就是身份证号
     var dtmBirth = new Date(arrSplit[2] + "/" + arrSplit[3] + "/" + arrSplit[4]);
-    var bGoodDay; 
+    var bGoodDay;
     bGoodDay = (dtmBirth.getFullYear() == Number(arrSplit[2])) && ((dtmBirth.getMonth() + 1) == Number(arrSplit[3])) && (dtmBirth.getDate() == Number(arrSplit[4]));
     if (!bGoodDay) {
       //alert(dtmBirth.getYear());
@@ -541,7 +541,7 @@ export function checkIdCardNumber(value) {
       var arrInt = new Array(7, 9, 10, 5, 8, 4, 2, 1, 6, 3, 7, 9, 10, 5, 8, 4, 2);
       var arrCh = new Array('1', '0', 'X', '9', '8', '7', '6', '5', '4', '3', '2');
       var nTemp = 0, i;
-      for(i = 0; i < 17; i ++) {
+      for (i = 0; i < 17; i++) {
         nTemp += value.substr(i, 1) * arrInt[i];
       }
       valnum = arrCh[nTemp % 11];
@@ -552,4 +552,30 @@ export function checkIdCardNumber(value) {
       return true;
     }
   }
+}
+
+/**
+ * 生成随机字符串
+ * @param {*} randomLen 随机长度
+ * @param {*} min 最短
+ * @param {*} max 最长
+ */
+export function createRandomStr(randomLen = false, min = 32, max = 64) {
+  var str = "",
+    range = min,
+    arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9',
+      'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k',
+      'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v',
+      'w', 'x', 'y', 'z', 'A', 'B', 'C', 'D', 'E', 'F',
+      'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P',
+      'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+  // 随机产生
+  if (randomLen) {
+    range = Math.round(Math.random() * (max - min)) + min;
+  }
+  for (var i = 0; i < range; i++) {
+    pos = Math.round(Math.random() * (arr.length - 1));
+    str += arr[pos];
+  }
+  return str;
 }

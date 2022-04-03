@@ -1,0 +1,28 @@
+<!--components/cm-select-members/index.wxml-->
+<page-container show="{{show}}" bind:clickoverlay="cancelSelect" bind:leave="cancelSelect">
+  <view class="body {{show ? 'fadeIn' : 'fadeOut'}}" data-weui-theme="{{theme}}">
+    <view class="body-header">
+      <view class="body-title">
+        <view class="color-red" bindtap="cancelSelect">取消</view>
+        <view>{{title}}</view>
+        <view class="color-primary" bindtap="confirm">完成</view>
+      </view>
+      <mp-searchbar placeholder="手机号搜索" bind:selectresult="selectResult" search="{{search}}"></mp-searchbar>
+    </view>
+    <scroll-view class="list-body">
+      <view style="height: 5.5em;"></view>
+      <block wx:for="{{list}}" wx:key="users">
+        <mp-cell>
+          <view slot="title" class="d-flex align-items-center">
+            <image class="list-body-avatar border-radius-base" src="{{item.avatar}}"></image>
+            <view class="d-flex justify-content-center flex-column ml-3">
+              <text>{{item.nickname}}</text>
+              <text class="font-sm">手机号：{{item.phone}}</text>
+            </view>
+          </view>
+          <view slot="footer" class="color-warning" bindtap="_delUser" data-index="{{index}}">移除</view>
+        </mp-cell>
+      </block>
+    </scroll-view>
+  </view>
+</page-container>

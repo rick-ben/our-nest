@@ -51,6 +51,13 @@
           "name": "动态相册",
           "pathName": "model-album/pages/detail/index",
           "query": "id=54ad1eea6207c77e0f1406771b092611",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "相册新建或编辑",
+          "pathName": "model-album/pages/setting/index",
+          "query": "id=efbc6d7162481478041b400140a6e3de",
           "scene": null,
           "launchMode": "default"
         }

@@ -58,6 +58,10 @@ Page({
         {
           is_public: _.eq(1),
           _id: this.data.options.id
+        },
+        {
+          _openid: this.data.userInfo._openid,
+          _id: this.data.options.id
         }
       ]))
       .get().then((res) => {
@@ -101,6 +105,15 @@ Page({
       }).catch((e) => {
         toast("数据加载失败", e);
       });
+  },
+
+  /**
+   * 跳转到相册配置页面
+   */
+  toAlbumSetting(){
+    wx.navigateTo({
+      url: '/model-album/pages/setting/index?id='+this.data.options.id
+    })
   },
 
   /**

@@ -55,7 +55,7 @@ Page({
    */
   toCreateAlbum(){
     wx.navigateTo({
-      url: 'url',
+      url: '/model-album/pages/setting/index',
     })
   },
 
@@ -84,6 +84,9 @@ Page({
         },
         {
           is_public: _.eq(1)
+        },
+        {
+          _openid: this.data.userInfo._openid
         }
       ]))
       .skip(skip)
@@ -117,6 +120,9 @@ Page({
             },
             {
               is_public: _.eq(1)
+            },
+            {
+              _openid: this.data.userInfo._openid
             }
           ])).count().then(res=>{
             if (res.total == list.length) {

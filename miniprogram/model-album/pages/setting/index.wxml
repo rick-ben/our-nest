@@ -1,0 +1,41 @@
+<!--model-album/pages/setting/index.wxml-->
+<view data-weui-theme="{{theme}}">
+  <cm-select-members show="{{showSelectMembers}}" list="{{members}}" bind:confirm="confirmMember"></cm-select-members>
+  <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
+  <mp-form id="form">
+      <mp-cells title="基本设置">
+        <mp-cell>
+          <view slot="title">相册名称</view>
+          <view class="ml-3">
+            <input type="text" placeholder="取个有意义的名字" value="{{formData.alias}}" bindinput="changeAlias" />
+          </view>
+        </mp-cell>
+        <mp-cell link="true">
+          <view slot="title">相册封面</view>
+          <view class="d-flex align-items-center" bindtap="changeCover" slot="footer">
+            <text>选择封面</text>
+            <image wx:if="{{formData.cover}}" class="album-cover ml-3" mode="heightFix" src="{{formData.cover}}"></image>
+          </view>
+        </mp-cell>
+      </mp-cells>
+      <mp-cells title="权限设置">
+        <mp-cell>
+          <view slot="title">是否公开</view>
+          <view slot="footer">
+            <switch checked="{{formData.is_public}}" bindchange="publicSwitchChange"/>
+          </view>
+        </mp-cell>
+        <mp-cell link="true" wx:if="{{!formData.is_public}}">
+          <view slot="title">相册成员</view>
+          <view class="ml-3 font-sm color-grey">当前共{{formData.member.length ? formData.member.length : 0}}人</view>
+          <view class="d-flex align-items-center" bindtap="changeMember" slot="footer">
+            <text>成员</text>
+          </view>
+        </mp-cell>
+      </mp-cells>
+    </mp-form>
+    <view class="mt-3">
+      <button class="weui-btn" type="primary" bindtap="submitForm">确定</button>
+    </view>
+    
+</view>

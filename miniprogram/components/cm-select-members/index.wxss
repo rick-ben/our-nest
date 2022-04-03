@@ -1,0 +1,34 @@
+/* components/cm-select-members/index.wxss */
+.body{
+  position: fixed;
+  bottom: 0;
+  height: 60vh;
+  width: 100%;
+  background-color: var(--nest-BG);
+  border-radius: 20rpx 20rpx 0 0;
+  overflow: hidden;
+}
+
+.body-header{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  z-index: 100;
+}
+
+.body-title{
+  display: flex;
+  justify-content: space-between;
+  padding: 10rpx 30rpx;
+  background-color: var(--weui-BG-0);
+}
+
+.list-body{
+  height: 60vh;
+  width: 100%;
+}
+
+.list-body-avatar{
+  width: 80rpx;
+  height: 80rpx;
+}

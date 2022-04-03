@@ -4,7 +4,8 @@
     "pages/personal/index",
     "pages/album/index"
   ],
-  "subPackages": [{
+  "subPackages": [
+    {
       "root": "model-article",
       "pages": [
         "pages/deploy/index",
@@ -20,7 +21,8 @@
     {
       "root": "model-album",
       "pages": [
-        "pages/detail/index"
+        "pages/detail/index",
+        "pages/setting/index"
       ]
     }
   ],
@@ -43,7 +45,8 @@
     "color": "#333333",
     "selectedColor": "#48c7fe",
     "backgroundColor": "#f7f7f7",
-    "list": [{
+    "list": [
+      {
         "pagePath": "pages/home/index",
         "iconPath": "static/images/tabbar/tab1.png",
         "selectedIconPath": "static/images/tabbar/tab1-s.png",
