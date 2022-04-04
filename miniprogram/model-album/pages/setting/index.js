@@ -1,6 +1,6 @@
 // model-album/pages/setting/index.js
 
-const { toast, modal, isNetworkUrl } = require('../../../utils/util');
+const { toast, modal, isNetworkUrl, loading } = require('../../../utils/util');
 
 // 连接云数据库
 const db = wx.cloud.database();
@@ -143,6 +143,7 @@ Page({
     let data = this.data.formData;
     let user = this.data.userInfo;
     if (!user.auth_photo) return toast('无权访问');
+    loading();
     // 如果公开，则清除成员
     if (data.is_public == 1) {
       data.member = [];
@@ -167,6 +168,9 @@ Page({
         updateData.cover = res.fileID;
         update(_this, updateData);
       }).catch((e) => {
+        wx.hideLoading({
+          success: (res) => {},
+        })
         console.log('上传图片失败');
       });
     } else {
@@ -182,6 +186,10 @@ Page({
               delta: 1,
             })
           })
+          wx.hideLoading();
+        }).catch(err=>{
+          wx.hideLoading();
+          modal('提示','修改配置失败，请重试');
         })
       } else {
         updateData.name = 'custom';
@@ -195,12 +203,15 @@ Page({
                 url: '/model-album/pages/detail/index?id='+res._id
               })
             })
+            wx.hideLoading();
           }).catch(err=>{
             console.log(err)
+            wx.hideLoading();
             modal('提示','创建相册失败，请重试');
           })
         } catch(e) {
           console.log(e)
+          wx.hideLoading();
           modal('提示','创建相册失败，请重试');
         }
       }

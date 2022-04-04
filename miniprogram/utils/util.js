@@ -218,6 +218,23 @@ export function format(time, reg) {
 }
 
 /**
+ * 将秒转为时分秒
+ * @param {*} value 
+ */
+export function formatSeconds(value) {
+  let result = parseInt(value)
+  let h = Math.floor(result / 3600) < 10 ? '0' + Math.floor(result / 3600) : Math.floor(result / 3600);
+  let m = Math.floor((result / 60 % 60)) < 10 ? '0' + Math.floor((result / 60 % 60)) : Math.floor((result / 60 % 60));
+  let s = Math.floor((result % 60)) < 10 ? '0' + Math.floor((result % 60)) : Math.floor((result % 60));
+
+  let res = '';
+  if(h !== '00') res += `${h}:`;
+  res += `${m}:`;
+  res += `${s}`;
+  return res;
+}
+
+/**
  * 比较数组是否相等
  */
 export function compareArray(arr1, arr2) {
@@ -477,13 +494,15 @@ export function savePhotoFile(imageUrl) {
 /**
  * 下载文件到本地
  * @param {String} url 需要下载的网络链接地址
+ * @param {Boolean} cloud 是否是云开发资源
  */
-export function downloadFile(url) {
+export function downloadFile(url, cloud = false) {
   return new Promise((resolve, reject) => {
-    if (isNetworkUrl(url)) {
-      wx.downloadFile({
-        url: url,
-        success: (res) => {
+    if (cloud) {
+      wx.cloud.downloadFile({
+        fileID: url, // 文件 ID
+        success: res => {
+          // 返回临时文件路径
           if (res.statusCode === 200) {
             resolve(res.tempFilePath);
           } else {
@@ -493,10 +512,26 @@ export function downloadFile(url) {
         fail(err) {
           reject(err);
         },
-      });
+      })
     } else {
-      // 返回本地地址
-      resolve(url);
+      if (isNetworkUrl(url)) {
+        wx.downloadFile({
+          url: url,
+          success: (res) => {
+            if (res.statusCode === 200) {
+              resolve(res.tempFilePath);
+            } else {
+              reject(res.errMsg);
+            }
+          },
+          fail(err) {
+            reject(err);
+          },
+        });
+      } else {
+        // 返回本地地址
+        resolve(url);
+      }
     }
   });
 }
@@ -578,4 +613,29 @@ export function createRandomStr(randomLen = false, min = 32, max = 64) {
     str += arr[pos];
   }
   return str;
+}
+
+/**
+ * 上传媒体文件
+ * @param {*} cloudPathPrefix 云存储路径前缀
+ * @param {*} tempFilePath 本地临时文件路径
+ */
+export function uploadMedia(cloudPathPrefix, tempFilePath) {
+  return new Promise((resolve, reject) => {
+    let pattern = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
+    let filePath = pattern.exec(tempFilePath);
+    let name = filePath[0];
+    // 将图片上传至云存储空间
+    wx.cloud.uploadFile({
+      // 指定上传到的云路径
+      cloudPath: cloudPathPrefix + '/' + name,
+      // 指定要上传的文件的小程序临时文件路径
+      filePath: tempFilePath
+    }).then(ret => {
+      let fileId = ret.fileID;
+      resolve(fileId)
+    }).catch((e) => {
+      reject(e)
+    });
+  });
 }

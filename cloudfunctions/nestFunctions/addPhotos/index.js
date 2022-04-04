@@ -15,9 +15,29 @@ const _ = db.command;
  * @param {*} context 
  */
 exports.main = async (event, context) => {
+  const wxContext = cloud.getWXContext();
   if (event.files && event.files.length >= 1) {
-    const wxContext = cloud.getWXContext();
     return addPhotos(wxContext.OPENID, event.files, event.album);
+  } else if (event.filesData) {
+    let list = event.filesData;
+    list.forEach(element => {
+      element.create_time = db.serverDate();
+      element._openid = wxContext.OPENID;
+    });
+    await photos.add({data: list}).then(res=>{
+      result = {
+        type: true,
+        msg: "保存成功",
+        data: res
+      }
+    }).catch(err=>{
+      result = {
+        type: false,
+        msg: "保存文件出错",
+        data: err
+      }
+    })
+    return result;
   } else {
     return {
       type: false,

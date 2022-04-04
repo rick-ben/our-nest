@@ -1,5 +1,5 @@
 // model-album/pages/detail/index.js
-const { modal, toast, format } = require('../../../utils/util');
+const { modal, toast, format, loading, uploadMedia, formatSeconds, downloadFile } = require('../../../utils/util');
 
 // 连接云数据库
 const db = wx.cloud.database();
@@ -35,7 +35,7 @@ Page({
   /**
    * 预览照片
    */
-  previewImage(event){
+  previewImage(event) {
     let index = event.currentTarget.dataset.index;
     wx.previewMedia({
       sources: this.data.list,
@@ -72,6 +72,11 @@ Page({
             albumData: data,
             auth: true
           })
+          if (data.is_public == 1) {
+            wx.showShareMenu({
+              menus: ['shareAppMessage'],
+            })
+          }
           if (data._openid == this.data.userInfo._openid) {
             _this.setData({
               isAdmin: true
@@ -84,6 +89,8 @@ Page({
             } else {
               data.alias = "未命名";
             }
+          } else if (data.name == "common") {
+            data.alias += "-动态";
           }
           wx.setNavigationBarTitle({
             title: data.alias,
@@ -108,11 +115,99 @@ Page({
   },
 
   /**
+   * 添加媒体
+   */
+  addMedia() {
+    var _this = this;
+    wx.chooseMedia({
+      count: 9,
+      mediaType: ['image', 'video'],
+      maxDuration: 60
+    }).then(res => {
+      if (res.type == 'video') {
+        var list = [];
+        res.tempFiles.forEach(element => {
+          list.push({
+            width: element.width,
+            height: element.height,
+            duration: element.duration,
+            duration_format: formatSeconds(element.duration),
+            size: element.size,
+            tempFilePath: element.tempFilePath,
+            thumbTempFilePath: element.thumbTempFilePath
+          })
+        });
+      } else {
+        var list = [];
+        res.tempFiles.forEach(element => {
+          list.push({
+            tempFilePath: element.tempFilePath
+          });
+        });
+      }
+      loading('文件上传中...');
+      var mediaList = [];
+      upload(() => {
+        console.log('mediaList:', mediaList);
+        wx.cloud.callFunction({
+          name: 'nestFunctions',
+          data: {
+            type: 'addPhotos',
+            filesData: mediaList
+          }
+        }).then((resp) => {
+          if (resp.result.type) {
+            wx.hideLoading();
+            modal('提示', '上传文件成功');
+            _this.loadAlbums(true);
+          } else {
+            wx.hideLoading();
+            modal('提示', '上传文件失败');
+          }
+        }).catch((e) => {
+          wx.hideLoading();
+          console.log('保存数据失败', e);
+        });
+      });
+      function upload(callback, index = 0) {
+        if (!list[index]) return callback();
+        let element2 = list[index];
+        let urlPath = element2.tempFilePath;
+        uploadMedia(res.type == 'video' ? 'videos' : 'images', urlPath).then(fileId => {
+          if (res.type == 'video') {
+            uploadMedia('video-thumb', element2.thumbTempFilePath).then(fileId2 => {
+              mediaList.push({
+                album_id: _this.options.id,
+                url: fileId,
+                thumb_url: fileId2,
+                info: element2,
+                type: res.type
+              })
+              return upload(callback, index + 1);
+            }).catch(err => {
+              return upload(callback, index + 1);
+            })
+          } else {
+            mediaList.push({
+              album_id: _this.options.id,
+              url: fileId,
+              type: res.type
+            })
+            return upload(callback, index + 1);
+          }
+        }).catch(err => {
+          return upload(callback, index + 1);
+        })
+      }
+    }).catch(err => { })
+  },
+
+  /**
    * 跳转到相册配置页面
    */
-  toAlbumSetting(){
+  toAlbumSetting() {
     wx.navigateTo({
-      url: '/model-album/pages/setting/index?id='+this.data.options.id
+      url: '/model-album/pages/setting/index?id=' + this.data.options.id
     })
   },
 
@@ -128,9 +223,16 @@ Page({
   /**
    * 加载相册列表
    */
-  loadAlbums() {
+  loadAlbums(reload = false) {
     let _this = this;
-    let page = this.data.page;
+    let page = 0;
+    if (reload) {
+      this.setData({
+        page: 0
+      })
+    } else {
+      page = this.data.page;
+    }
     if (!this.data.userInfo.auth_view && page == 1) {
       this.setData({
         footerTip: '游客只能查看20张照片',
@@ -174,7 +276,9 @@ Page({
                 loadMoreStatus: 'nomore'
               })
             }
-          })
+          }).catch((e) => {
+            console.log(e)
+          });
         } else {
           toast("没有更多了");
           _this.setData({
@@ -185,5 +289,72 @@ Page({
       }).catch((e) => {
         toast("数据加载失败", e);
       });
+  },
+  /**
+   * 操作
+   */
+  mediaOption(event) {
+    let _this = this;
+    let index = event.currentTarget.dataset.index;
+    let list = this.data.list;
+    let info = list[index];
+    let albumData = this.data.albumData;
+    let userInfo = this.data.userInfo;
+    let actionSheet = [];
+    if (info.type != 'video') {
+      actionSheet.push('分享给朋友');
+    }
+    if (albumData._openid == userInfo._openid) {
+      actionSheet.push('删除');
+    }
+    wx.showActionSheet({
+      itemList: actionSheet,
+      success: (result) => {
+        switch (actionSheet[result.tapIndex]) {
+          case '分享给朋友':
+            loading('处理文件中...')
+            downloadFile(info.url, true).then(path=>{
+              wx.hideLoading();
+              wx.showShareImageMenu({
+                path: path
+              }).then(res=>{}).catch(err=>{})
+            }).catch(err=>{
+              wx.hideLoading();
+              toast('文件下载失败');
+            })
+            break;
+          case '删除':
+            modal('确认操作', '确定要删除吗，数据将无法恢复', '删除', '取消').then(res => {
+              let files = [];
+              if (info.type == 'video') {
+                files.push(info.thumb_url);
+              }
+              files.push(info.url);
+              wx.cloud.callFunction({
+                name: 'nestFunctions',
+                data: {
+                  type: 'delPhotos',
+                  files: files
+                }
+              }).then((resp) => {
+                console.log(resp)
+                list.splice(index, 1);
+                _this.setData({
+                  list: list
+                })
+                toast('删除文件成功');
+              }).catch((e) => {
+                toast('删除文件失败，请重试');
+              });
+            })
+            break;
+          default:
+            console.log('无操作');
+            break;
+        }
+      },
+      fail: (res) => { },
+      complete: (res) => { },
+    })
   }
 })

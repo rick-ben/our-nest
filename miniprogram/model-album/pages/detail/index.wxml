@@ -4,10 +4,25 @@
 
   <!-- 照片列表 -->
   <view class="d-flex flex-wrap m-3 mt-0 mr-0">
-    <view class="mt-3 mr-3" wx:for="{{list}}" wx:key="albums" data-index="{{index}}" bindtap="previewImage">
-      <view class="album-image border-radius-lg">
-        <image class="album-image-main" src="{{item.url}}" mode="aspectFit"></image>
-        <image class="album-image-base" src="{{item.url}}" mode="aspectFill"></image>
+    <view class="mt-3 mr-3" wx:for="{{list}}" wx:key="albums">
+      <view class="album-image border-radius-lg" wx:if="{{!item.type || item.type != 'video'}}">
+        <view class="album-option-base" data-index="{{index}}" catchtap="mediaOption">
+          <mp-icon type="field" icon="more" size="30" color="#FFFFFF"></mp-icon>
+        </view>
+        <image class="album-image-main" data-index="{{index}}" catchtap="previewImage" show-menu-by-longpress src="{{item.url}}" mode="aspectFit"></image>
+        <image class="album-image-base" data-index="{{index}}" catchtap="previewImage" src="{{item.url}}" mode="aspectFill"></image>
+      </view>
+      <view class="album-image border-radius-lg" wx:else>
+        <view class="album-option-base" data-index="{{index}}" catchtap="mediaOption">
+          <mp-icon type="field" icon="more" size="30" color="#FFFFFF"></mp-icon>
+        </view>
+        <view class="album-video-main" data-index="{{index}}" catchtap="previewImage">
+          <mp-icon type="field" icon="play" size="45" color="#FFFFFF"></mp-icon>
+          <text class="font-sm">{{item.info.duration_format}}</text>
+        </view>
+        <view class="album-video-base" data-index="{{index}}" catchtap="previewImage"></view>
+        <image class="album-image-main" data-index="{{index}}" catchtap="previewImage" show-menu-by-longpress src="{{item.thumb_url}}" mode="aspectFit"></image>
+        <image class="album-image-base" data-index="{{index}}" catchtap="previewImage" src="{{item.thumb_url}}" mode="aspectFill"></image>
       </view>
     </view>
   </view>
@@ -15,7 +30,7 @@
   <!-- 侧边栏 -->
   <view class="sidebar p-3" wx:if="{{isAdmin}}">
     <view wx:if="{{albumData.name != 'common'}}">
-      <mp-icon type="field" icon="add2" size="30" color="{{colorPrimary}}"></mp-icon>
+      <mp-icon type="field" icon="add2" size="30" color="{{colorPrimary}}" bindtap="addMedia"></mp-icon>
     </view>
     <view class="{{albumData.name != 'common' ? 'mt-3' : ''}}" wx:if="{{albumData._openid == userInfo._openid}}" bindtap="toAlbumSetting">
       <mp-icon type="field" icon="setting" size="30" color="{{colorPrimary}}"></mp-icon>

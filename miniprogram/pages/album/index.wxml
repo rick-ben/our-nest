@@ -7,7 +7,7 @@
       <view class="album-image bg-white border-radius-lg">
         <image class="default-cover" wx:if="{{!item.cover}}" src="/static/images/icon/default_album_{{theme}}.png" mode="aspectFit"></image>
         <block wx:else>
-          <image class="album-image-main" src="{{item.cover}}" mode="aspectFit"></image>
+          <image class="album-image-main" show-menu-by-longpress src="{{item.cover}}" mode="aspectFit"></image>
           <image class="album-image-base" src="{{item.cover}}" mode="aspectFill"></image>
         </block>
       </view>
@@ -17,7 +17,7 @@
     </view>
     <view class="mt-3 mr-3" bindtap="toCreateAlbum" wx:if="{{userInfo.auth_photo}}">
       <view class="album-image bg-white border-radius-lg">
-        <image src="/static/images/icon/album_create_{{theme}}.png" mode="aspectFit"></image>
+        <image class="default-cover" src="/static/images/icon/album_create_{{theme}}.png" mode="aspectFit"></image>
       </view>
       <view class="album-text text-center mt-2">
         <text class="font-base">新建相册</text>

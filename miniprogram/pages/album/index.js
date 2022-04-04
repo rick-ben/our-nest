@@ -103,6 +103,8 @@ Page({
               } else {
                 element.alias = "未命名";
               }
+            } else if (element.name == "common") {
+              element.alias += "-动态";
             }
           });
           if (page == 0) {
