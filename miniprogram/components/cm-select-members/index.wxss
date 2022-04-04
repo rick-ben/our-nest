@@ -19,7 +19,7 @@
 .body-title{
   display: flex;
   justify-content: space-between;
-  padding: 10rpx 30rpx;
+  padding: 15rpx 30rpx;
   background-color: var(--weui-BG-0);
 }
 

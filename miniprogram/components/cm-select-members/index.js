@@ -103,6 +103,20 @@ Component({
       this.setData({
         list: currUsers
       })
+      let searchbar = this.selectComponent('#searchbar');
+      let result = searchbar.data.result;
+      let index = 0;
+      for (let i = 0; i < result.length; i++) {
+        const element = result[i];
+        if (element._id == user._id) {
+          index = i;
+          break;
+        }
+      }
+      result.splice(index, 1);
+      searchbar.setData({
+        result: result
+      })
     },
     /**
      * 取消选择

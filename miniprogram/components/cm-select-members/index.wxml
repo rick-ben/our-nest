@@ -7,10 +7,10 @@
         <view>{{title}}</view>
         <view class="color-primary" bindtap="confirm">完成</view>
       </view>
-      <mp-searchbar placeholder="手机号搜索" bind:selectresult="selectResult" search="{{search}}"></mp-searchbar>
+      <mp-searchbar id="searchbar" placeholder="手机号搜索" bind:selectresult="selectResult" search="{{search}}"></mp-searchbar>
     </view>
     <scroll-view class="list-body">
-      <view style="height: 5.5em;"></view>
+      <view style="height: 6em;"></view>
       <block wx:for="{{list}}" wx:key="users">
         <mp-cell>
           <view slot="title" class="d-flex align-items-center">
