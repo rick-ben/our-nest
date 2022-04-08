@@ -15,5 +15,4 @@
 .button-item{
   width: 350rpx;
   text-align: center;
-  border-radius: 15rpx;
 }

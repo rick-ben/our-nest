@@ -8,8 +8,12 @@ Page({
   data: {
     showLoading: true,
     btns: [{
-      name: '清理小程序缓存',
+      name: '清除缓存',
       fun: 'clearStorage'
+    },{
+      name: '退出小程序',
+      fun: 'exitSys',
+      ext_class: 'bg-grey color-white'
     }]
   },
 
@@ -66,5 +70,12 @@ Page({
         modal('提示','缓存已清理')
       },
     })
+  },
+
+  /**
+   * 退出小程序
+   */
+  exitSys(){
+    wx.exitMiniProgram();
   }
 })
