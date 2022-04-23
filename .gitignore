@@ -12,4 +12,4 @@ $RECYCLE.BIN/
 
 # Node.js
 node_modules/
-config/
+miniprogram/config/
