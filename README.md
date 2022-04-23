@@ -6,11 +6,11 @@
 
 ## 功能体验
 
-![微信扫码体验](miniprogram\static\images\Qrcode.jpg)
+![微信扫码体验](miniprogram/static/images/Qrcode.jpg)
 
 ## 公众号
 
-![笔笔赚营地](miniprogram\static\images\Qrcode2.jpg)
+![笔笔赚营地](miniprogram/static/images/Qrcode2.jpg)
 
 ## 功能简述
 
@@ -195,6 +195,6 @@ auth_view : "bool值，表示是否可以查看所有数据，为false时表示�
 
 如果觉得好用，可以请我喝杯奶茶吗？
 
-| ![](miniprogram\static\images\zhifubao.jpg) | ![](miniprogram\static\images\weixin.jpg) |
+| ![](miniprogram/static/images/zhifubao.jpg) | ![](miniprogram/static/images/weixin.jpg) |
 | ------------------------------------------- | ----------------------------------------- |
 
