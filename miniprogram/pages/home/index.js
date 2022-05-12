@@ -107,6 +107,7 @@ Page({
       } else {
         toast("没有更多了");
         _this.setData({
+          showLoading: false,
           footerTip: '没有更多了',
           loadMoreStatus: 'nomore'
         })

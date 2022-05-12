@@ -63,7 +63,7 @@ module.exports = {
   "request_develop": "http://api.xxx.com",//本地开发
   "request_trial": "https://api.xxx.com",//测试环境
   "request_release": "https://api.xxx.com",//线上环境
-  // 云开发环境id配置
+  // 云开发环境id配置（位置：云开发控制台->环境id，如果只有一个环境，则三个都填一样的）
   "wx_cloud_env_develop": "xxxxxxx",//本地开发
   "wx_cloud_env_trial": "xxxxxxx",//测试环境
   "wx_cloud_env_release": "xxxxxxx",//线上环境
@@ -159,6 +159,16 @@ export function getWxCloudEnv() {
      "read": true,
      "write": "doc._openid == auth.openid"
    }
+   ```
+
+#### 安装云开发依赖
+
+1. 在`cloudfunctions\nestFunctions`目录下打开终端
+
+2. 执行以下命令
+
+   ```shell
+   npm install --save wx-server-sdk@latest
    ```
 
 #### 数据表说明
