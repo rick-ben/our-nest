@@ -33,5 +33,44 @@
     <view class="m-3 bg-white p-2 border-radius-base text-justify">
       <text>{{info.content}}</text>
     </view>
+    <!-- 用户评论 -->
+    <view class="m-3">
+      <text class="font-lg"><text class="color-primary font-xl">{{commentTotal}} </text>条评论</text>
+      <block wx:for="{{commentList}}" wx:key="commentList">
+        <view class="bg-white p-2 border-radius-sm mt-2">
+          <view class="d-flex align-items-center">
+            <image mode="widthFix" class="comment-avatar border-radius-lg" src="{{item.user.avatar?item.user.avatar:'/static/images/icon/default_avatar.png'}}"></image>
+            <view class="d-flex flex-column justify-content-center ml-2">
+              <text class="font-base">{{item.user.nickname}}</text>
+              <view class="font-sm color-grey">{{item.time}}</view>
+            </view>
+          </view>
+          <view class="mt-1">
+            <text class="font-base text-justify">{{item.comment}}</text>
+          </view>
+        </view>
+      </block>
+    </view>
+    <!-- 加载更多评论 -->
+    <view class="weui-loadmore" wx:if="{{commentLoadMoreStatus == 'loading'}}">
+      <view class="weui-loading"></view>
+      <view class="weui-loadmore__tips">正在加载</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" wx:if="{{commentLoadMoreStatus == 'nomore'}}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line">{{commentFooterTip}}</view>
+    </view>
+    <view class="weui-loadmore weui-loadmore_line" wx:if="{{commentLoadMoreStatus == 'more'}}">
+      <view class="weui-loadmore__tips weui-loadmore__tips_in-line" bindtap="loadArticles">下拉加载更多</view>
+    </view>
+    <!-- 底部评论窗口 -->
+    <view class="comment-body" wx:if="{{userInfo.auth_view}}"></view>
+    <view class="comment-body bg-white fixed-bottom" wx:if="{{userInfo.auth_view}}">
+      <view class="d-flex m-2">
+        <textarea class="flex-grow-1 comment-textarea border-radius-base" auto-height="{{true}}" maxlength="2000" placeholder="说两句" bindinput="changeCommentCnt" value="{{comment}}"></textarea>
+        <view class="d-flex">
+          <button class="weui-btn align-self-end comment-btn ml-2" size="mini" type="primary" bindtap="submitComment" disabled="{{comment == ''}}">发送</button>
+        </view>
+      </view>
+    </view>
   </view>
 </view>
