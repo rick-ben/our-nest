@@ -52,3 +52,9 @@
   height: 40rpx;
   max-height: 100rpx;
 }
+
+::-webkit-scrollbar{
+  width: 0;
+  height: 0;
+  color: transparent;
+}
