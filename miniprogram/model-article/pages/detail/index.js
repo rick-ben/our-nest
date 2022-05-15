@@ -268,21 +268,27 @@ Page({
       })
       _this.loadComments(true);
       // 调用api接口通过指定方式提醒新评论
-      let noticeList = [];
-      if (_this.data.userInfo._openid != _this.data.info.user._openid && _this.data.info.user.auth_notice) {
-        noticeList.push(_this.data.info.user);
-        _this.api('notice', {
-          app_id: base.nest_app_id,
-          app_key: base.nest_app_key,
-          notice_list: noticeList,
-          option_user: _this.data.userInfo,
-          type: 'comment'
-        }).then(ret=>{
-          if (ret.type == 'false') {
-            console.error(ret.msg)
-          }
-        })
-      }
+      users.where({
+        auth_notice: true,
+        _openid: _.not(_.eq(_this.data.userInfo._openid))
+      }).get().then(res=>{
+        if (res.data.length >= 1) {
+          let noticeList = res.data;
+          _this.api('notice', {
+            app_id: base.nest_app_id,
+            app_key: base.nest_app_key,
+            notice_list: noticeList,
+            option_user: _this.data.userInfo,
+            type: 'comment'
+          }).then(ret=>{
+            if (ret.type == 'false') {
+              console.error(ret.msg)
+            }
+          })
+        } else {
+          console.log('未配置需要通知的用户');
+        }
+      })
     }).catch(err=>{
       wx.hideLoading();
       toast('评论失败，请重试');
