@@ -32,11 +32,14 @@ async function getUserData(openid) {
       let addObj = {
         _openid: openid,
         nickname: '',
+        alias: '',  //别名，用于通知时使用
         avatar: '',
         phone: '',
+        email: '',
         auth_deploy: false, //发布文章权限
         auth_view: false, //查看小程序全部内容权限
         auth_photo: false,  //相册管理权限，创建属于该用户自己的相册
+        auth_notice: false,  //获取通知权限，新文章、新评论等...
         create_time: db.serverDate()
       }
       try {

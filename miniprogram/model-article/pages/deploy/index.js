@@ -1,9 +1,11 @@
 // article/pages/deploy/index.js
 import { getSysPermission, loading, modal, stringLength, toast } from "../../../utils/util";
+const base = require('../../../config/base_config');
 // 连接云数据库
 const db = wx.cloud.database();
 // 获取集合的引用
 const dbArticle = db.collection('article');
+const users = db.collection('users');
 // 数据库操作符
 const _ = db.command;
 
@@ -231,16 +233,32 @@ Page({
     dbArticle.add({
       data: from
     }).then(res=>{
-      // 调用api接口通过公众号模板消息提醒新文章发布
-      _this.api('deployNotice', {
-        phone: _this.data.userInfo.phone,
-        ss: '20220212210139PM',
-        id: res._id
+      // 调用api接口通过指定方式提醒新文章发布
+      users.where({
+        auth_notice: true,
+        _openid: _.not(_.eq(_this.data.userInfo._openid))
+      }).get().then(res=>{
+        if (res.data.length >= 1) {
+          let noticeList = res.data;
+          _this.api('notice', {
+            app_id: base.nest_app_id,
+            app_key: base.nest_app_key,
+            notice_list: noticeList,
+            option_user: _this.data.userInfo,
+            type: 'article'
+          }).then(ret=>{
+            if (ret.type == 'false') {
+              console.error(ret.msg)
+            }
+          })
+        } else {
+          console.log('未配置需要通知的用户');
+        }
       })
       toast('发表成功！', 2000).then(ret=>{
         clearInterval(checkDataI);
         setTimeout(() => {
-          wx.reLaunch({
+          wx.redirectTo({
             url: '/model-article/pages/detail/index?id='+res._id
           })
         }, 1500);

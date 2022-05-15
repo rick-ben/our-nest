@@ -1,6 +1,6 @@
 // article/pages/detail/index.js
 const { modal, format, setString, toast, loading, stringLength } = require('../../../utils/util');
-
+const base = require('../../../config/base_config');
 // 连接云数据库
 const db = wx.cloud.database();
 // 获取集合的引用
@@ -248,6 +248,9 @@ Page({
     if (stringLength(this.data.comment) <= 0) {
       modal('提示','请先输入评论内容');
     }
+    if (!this.data.userInfo.auth_view) {
+      modal('提示','无权操作');
+    }
     loading('正在提交评论');
     let commentData = {
       aid: this.data.options.id,
@@ -264,6 +267,22 @@ Page({
         comment: ''
       })
       _this.loadComments(true);
+      // 调用api接口通过指定方式提醒新评论
+      let noticeList = [];
+      if (_this.data.userInfo._openid != _this.data.info.user._openid && _this.data.info.user.auth_notice) {
+        noticeList.push(_this.data.info.user);
+        _this.api('notice', {
+          app_id: base.nest_app_id,
+          app_key: base.nest_app_key,
+          notice_list: noticeList,
+          option_user: _this.data.userInfo,
+          type: 'comment'
+        }).then(ret=>{
+          if (ret.type == 'false') {
+            console.error(ret.msg)
+          }
+        })
+      }
     }).catch(err=>{
       wx.hideLoading();
       toast('评论失败，请重试');

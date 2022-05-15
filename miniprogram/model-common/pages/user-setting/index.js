@@ -92,7 +92,9 @@ Page({
         data: {
           avatar: curr.avatar,
           nickname: curr.nickname,
-          phone: curr.phone
+          phone: curr.phone,
+          email: curr.email ? curr.email : '',
+          alias: curr.alias ? curr.alias : ''
         }
       }).then(res => {
         _this.reloadUserInfo(curr._openid).then(res => {
