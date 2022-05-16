@@ -36,6 +36,13 @@ Page({
   },
 
   /**
+   * 下拉刷新页面
+   */
+  onPullDownRefresh: function () {
+    this.loadArticles(true);
+  },
+
+  /**
    * 页面数据初始化完成
    */
   initSuccess: function () {
@@ -45,9 +52,17 @@ Page({
   /**
    * 加载文章列表
    */
-  loadArticles() {
+  loadArticles(reload = false) {
     let _this = this;
     let page = this.data.articlePage;
+    if (reload) {
+      this.setData({
+        articlePage: 0,
+        articleList: [],
+        articleTotal: 0
+      })
+      page = 0;
+    }
     if (!this.data.userInfo.auth_view && page == 1) {
       this.setData({
         footerTip: '游客只能查看最新20条动态',

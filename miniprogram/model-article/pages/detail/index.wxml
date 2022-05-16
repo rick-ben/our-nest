@@ -46,7 +46,7 @@
             </view>
           </view>
           <view class="mt-1">
-            <text class="font-base text-justify">{{item.comment}}</text>
+            <text class="font-base text-justify" selectable style="word-break: break-all;">{{item.comment}}</text>
           </view>
         </view>
       </block>
@@ -64,7 +64,7 @@
     </view>
     <!-- 底部评论窗口 -->
     <view class="comment-body" wx:if="{{userInfo.auth_view}}"></view>
-    <view class="comment-body bg-white comment-fixed-bottom" wx:if="{{userInfo.auth_view}}">
+    <view class="comment-body comment-fixed-bottom" wx:if="{{userInfo.auth_view}}">
       <view class="d-flex m-2">
         <textarea class="flex-grow-1 comment-textarea border-radius-base" auto-height="{{true}}" maxlength="2000" placeholder="说两句" bindinput="changeCommentCnt" value="{{comment}}"></textarea>
         <view class="d-flex">

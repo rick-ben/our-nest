@@ -1,5 +1,5 @@
 // article/pages/deploy/index.js
-import { getSysPermission, loading, modal, stringLength, toast } from "../../../utils/util";
+import { getSysPermission, loading, modal, setString, stringLength, toast } from "../../../utils/util";
 const base = require('../../../config/base_config');
 // 连接云数据库
 const db = wx.cloud.database();
@@ -232,7 +232,7 @@ Page({
     from['create_time'] = db.serverDate();
     dbArticle.add({
       data: from
-    }).then(res=>{
+    }).then(result=>{
       // 调用api接口通过指定方式提醒新文章发布
       users.where({
         auth_notice: true,
@@ -245,7 +245,9 @@ Page({
             app_key: base.nest_app_key,
             notice_list: noticeList,
             option_user: _this.data.userInfo,
-            type: 'article'
+            type: 'article',
+            subject: '新动态，'+setString(_this.data.content, 60),
+            route: 'model-article/pages/detail/index?id='+result._id
           }).then(ret=>{
             if (ret.type == 'false') {
               console.error(ret.msg)
@@ -259,7 +261,7 @@ Page({
         clearInterval(checkDataI);
         setTimeout(() => {
           wx.redirectTo({
-            url: '/model-article/pages/detail/index?id='+res._id
+            url: '/model-article/pages/detail/index?id='+result._id
           })
         }, 1500);
       })

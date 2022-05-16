@@ -252,6 +252,7 @@ Page({
       modal('提示','无权操作');
     }
     loading('正在提交评论');
+    let commentBody = this.data.comment;
     let commentData = {
       aid: this.data.options.id,
       comment: this.data.comment,
@@ -263,9 +264,6 @@ Page({
     }).then(res=>{
       wx.hideLoading();
       toast('评论成功');
-      _this.setData({
-        comment: ''
-      })
       _this.loadComments(true);
       // 调用api接口通过指定方式提醒新评论
       users.where({
@@ -279,7 +277,9 @@ Page({
             app_key: base.nest_app_key,
             notice_list: noticeList,
             option_user: _this.data.userInfo,
-            type: 'comment'
+            type: 'comment',
+            subject: '新评论，'+commentBody,
+            route: 'model-article/pages/detail/index?id='+_this.data.options.id
           }).then(ret=>{
             if (ret.type == 'false') {
               console.error(ret.msg)
@@ -288,6 +288,9 @@ Page({
         } else {
           console.log('未配置需要通知的用户');
         }
+      })
+      _this.setData({
+        comment: ''
       })
     }).catch(err=>{
       wx.hideLoading();
