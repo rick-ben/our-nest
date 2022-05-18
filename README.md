@@ -6,7 +6,7 @@
 
 ## 功能体验
 
-![微信扫码体验](miniprogram/static/images/Qrcode.jpg)
+![微信扫码体验](/miniprogram/static/images/Qrcode.jpg)
 
 ## 公众号
 
