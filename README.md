@@ -6,11 +6,11 @@
 
 ## 功能体验
 
-![微信扫码体验](/miniprogram/static/images/Qrcode.jpg)
+![微信扫码体验](./miniprogram/static/images/Qrcode.jpg)
 
 ## 公众号
 
-![笔笔赚营地](miniprogram/static/images/Qrcode2.jpg)
+![笔笔赚营地](./miniprogram/static/images/Qrcode2.jpg)
 
 ## 功能简述
 
@@ -242,6 +242,6 @@ auth_notice : "bool值，表示是否可以接收通知，为false时表示不�
 
 请我喝杯奶茶？
 
-| ![](miniprogram/static/images/zhifubao.jpg) | ![](miniprogram/static/images/weixin.jpg) |
+| ![](./miniprogram/static/images/zhifubao.jpg) | ![](./miniprogram/static/images/weixin.jpg) |
 | ------------------------------------------- | ----------------------------------------- |
 
