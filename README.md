@@ -8,9 +8,9 @@
 
 ![微信扫码体验](./miniprogram/static/images/Qrcode.jpg)
 
-## 公众号
+## 交流群（微信群）
 
-![笔笔赚营地](./miniprogram/static/images/Qrcode2.jpg)
+![笔笔赚营地](./miniprogram/static/images/Qrcode2.png)
 
 ## 功能简述
 
