@@ -9,6 +9,7 @@ const dbArticle = db.collection('article');
 const users = db.collection('users');
 // 数据库操作符
 const _ = db.command;
+
 Page({
   mixins: [require('../../mixin/common')],
   /**
@@ -19,7 +20,8 @@ Page({
     articlePage: 0,
     articleList: [],
     loadMoreStatus: 'more',
-    footerTip: ''
+    footerTip: '',
+    deployUsers: {}, // 发布者列表
   },
 
   /**
@@ -55,6 +57,8 @@ Page({
   loadArticles(reload = false) {
     let _this = this;
     let page = this.data.articlePage;
+    let deployUsers = this.data.deployUsers;
+    console.log(deployUsers)
     if (reload) {
       this.setData({
         articlePage: 0,
@@ -75,50 +79,57 @@ Page({
     })
     let size = 20;
     let skip = page * size;
-    dbArticle.limit(size)
+    dbArticle.where({
+      _id: _.neq('')
+    }).limit(size)
     .skip(skip)
     .orderBy('create_time', 'desc')
     .get().then((res) => {
       let list = res.data;
       if (list.length >= 1) {
         let selectNum = 0;
-        let dataLen = list.length;
         let setinfo = {};
-        list.forEach(element => {
-          element.time = format(element.create_time, "yyyy-MM-dd HH:mm")
-          users.where({
-            _openid: element._openid
-          })
-            .limit(1)
-            .get()
-            .then(ret => {
-              if (ret.data.length >= 1) {
-                element.user = ret.data[0];
+
+        getUser(list);
+        //获取发布者信息
+        function getUser(dataList) {
+          if (!list[selectNum]) return;
+          let currOpenid = list[selectNum]._openid;
+          if (deployUsers[currOpenid]) {
+            selectNum += 1;
+            return getUser(list);
+          } else {
+            wx.cloud.callFunction({
+              name: 'nestFunctions',
+              data: {
+                type: 'getUserInfo',
+                openid: currOpenid
+              }
+            }).then((resp) => {
+              if (resp.result && resp.result.userData) {
+                let set = {};
+                set['deployUsers.'+currOpenid] = resp.result.userData;
+                _this.setData(set);
               }
               selectNum += 1;
+              return getUser(list);
             })
-        });
-        if (selectNum == dataLen) {
-          applyData(this, list);
-        } else {
-          let watchSelect = setInterval(() => {
-            if (selectNum == dataLen) {
-              applyData(this, list);
-              clearInterval(watchSelect);
-            }
-          }, 500);
-        }
-        function applyData (_this, list){
-          if (page == 0) {
-            setinfo['articleList'] = list;
-          } else {
-            setinfo['articleList'] = [..._this.data.articleList, ...list];
           }
-          setinfo['articlePage'] = page += 1
-          setinfo['showLoading'] = false;
-          setinfo['loadMoreStatus'] = 'more';
-          _this.setData(setinfo);
         }
+
+        list.forEach(element => {
+          element.time = format(element.create_time, "yyyy-MM-dd HH:mm")
+        });
+
+        if (page == 0) {
+          setinfo['articleList'] = list;
+        } else {
+          setinfo['articleList'] = [..._this.data.articleList, ...list];
+        }
+        setinfo['articlePage'] = page += 1
+        setinfo['showLoading'] = false;
+        setinfo['loadMoreStatus'] = 'more';
+        _this.setData(setinfo);
       } else {
         toast("没有更多了");
         _this.setData({
@@ -130,7 +141,9 @@ Page({
     }).catch((e) => {
       toast("数据加载失败", e);
     });
-    dbArticle.count().then(res=>{
+    dbArticle.where({
+      _id: _.neq('')
+    }).count().then(res=>{
       this.setData({
         articleTotal: res.total
       })
