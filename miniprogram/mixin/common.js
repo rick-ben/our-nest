@@ -95,7 +95,7 @@ module.exports = {
       // 获取当前用户信息
       function getUserData(that, setinfo, num) {
         if (num >= 10) {
-          if (this.isDevelop()) {
+          if (that.isDevelop()) {
             return modal('登录失败','请检查配置文件、数据库、环境依赖是否都已配置完成');
           } else {
             return modal('登录失败','请检查网络是否可用，或清除缓存后，尝试重启小程序');
