@@ -42,6 +42,12 @@ Page({
    */
   onPullDownRefresh: function () {
     this.loadArticles(true);
+    setTimeout(() => {
+      //2秒后停止下拉
+      wx.stopPullDownRefresh({
+        success: (res) => {},
+      })
+    }, 500);
   },
 
   /**
