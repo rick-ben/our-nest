@@ -15,7 +15,8 @@
     {
       "root": "model-common",
       "pages": [
-        "pages/user-setting/index"
+        "pages/user-setting/index",
+        "pages/anniversary/index"
       ]
     },
     {

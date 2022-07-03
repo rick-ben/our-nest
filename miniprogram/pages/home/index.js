@@ -7,6 +7,7 @@ const db = wx.cloud.database();
 // 获取集合的引用
 const dbArticle = db.collection('article');
 const users = db.collection('users');
+const dbConfigLoversBase = db.collection('configLoversBase');
 // 数据库操作符
 const _ = db.command;
 
@@ -22,6 +23,7 @@ Page({
     loadMoreStatus: 'more',
     footerTip: '',
     deployUsers: {}, // 发布者列表
+    loversList: [], //情侣列表
   },
 
   /**
@@ -54,7 +56,51 @@ Page({
    * 页面数据初始化完成
    */
   initSuccess: function () {
+    this.loadDeployUsers();
     this.loadArticles();
+  },
+
+  /**
+   * 加载发布者列表，也就是情侣列表，只会查出两个人
+   */
+  loadDeployUsers() {
+    let _this = this;
+    users.where({
+      auth_deploy: true
+    }).limit(2)
+    .field({
+      avatar: true,
+      nickname: true,
+      phone: true,
+      _openid: true,
+      alias: true
+    })
+    .orderBy('create_time', 'asc')
+    .get().then(res=>{
+      if (res.data.length == 2) {
+        _this.setData({
+          loversList: res.data
+        })
+      } else {
+        console.error('当前拥有发布权限的人数不足2人，首页顶部情侣专属内容将不显示，如有需要，请邀请你的另一半加入');
+      }
+    })
+    //计算在一起的天数
+    dbConfigLoversBase.where({
+      flag: 1,  //1表示获取在一起的纪念日标识
+    }).limit(1).get().then(res=>{
+      if (res.data.length >= 1) {
+        let item = res.data[0];
+        let startTime = item.start_time.getTime();
+        let currTime = new Date().getTime();
+        let days = Math.ceil((currTime-startTime) / (1000 * 60 * 60 * 24)); //将天数向上取整
+        _this.setData({
+          loveTime: days
+        })
+      } else {
+        console.error('未查询到在一起的纪念日配置，请查看教程更新');
+      }
+    })
   },
 
   /**
@@ -64,7 +110,6 @@ Page({
     let _this = this;
     let page = this.data.articlePage;
     let deployUsers = this.data.deployUsers;
-    console.log(deployUsers)
     if (reload) {
       this.setData({
         articlePage: 0,

@@ -29,3 +29,11 @@
 .album-text{
   width: 210rpx;
 }
+
+.bg-image{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.2;
+}

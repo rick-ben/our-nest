@@ -12,7 +12,7 @@
         </mp-cell>
         <mp-cells>
             <mp-cell link value="{{location?location.name:'所在位置'}}" bindtap="location">
-                <mp-icon class="mr-3" slot="icon" type="outline" icon="location" size="22"></mp-icon>
+                <mp-icon class="mr-3" slot="icon" type="outline" icon="location" size="22" color="{{colorBlack}}"></mp-icon>
             </mp-cell>
         </mp-cells>
         <view class="deploy-btn">

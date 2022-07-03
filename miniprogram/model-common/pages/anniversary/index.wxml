@@ -1,0 +1,67 @@
+<!--model-common/pages/anniversary/index.wxml-->
+<view data-weui-theme="{{theme}}">
+  <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
+  <mp-toptips msg="{{error}}" type="error" show="{{error}}"></mp-toptips>
+  <!-- 纪念日列表 -->
+  <view class="main">
+    <block wx:for="{{list}}" wx:key="annList">
+      <view class="m-3">
+        <mp-slideview data-index="{{index}}" bindbuttontap="annEdit" icon="{{true}}" buttons="{{slideButtons}}">
+          <view class="d-flex p-3 border-radius-lg color-white align-items-center justify-content-between" style="background-color: rgb(255, 111, 111);">
+            <view class="flex-grow-1" style="max-width: 420rpx;">{{item.desc}}</view>
+            <view class="d-flex flex-column align-items-end">
+              <view>{{item.start_time_de}}</view>
+              <view class="font-base" wx:if="{{item.beforeDay}}">过去{{item.beforeDay}}天</view>
+              <view class="font-base" wx:if="{{item.futureDay}}">还有{{item.futureDay}}天</view>
+            </view>
+          </view>
+        </mp-slideview>
+      </view>
+    </block>
+    <!-- 底部添加按钮 -->
+    <view class="add-btn inset-bottom"></view>
+    <view class="add-btn fixed-bottom inset-bottom d-flex align-items-center" wx:if="{{!showLoading}}">
+      <button class="weui-btn" type="primary" bindtap="openAdd">添加</button>
+    </view>
+    <!-- 弹窗添加纪念日 -->
+    <mp-half-screen-dialog bindbuttontap="addButtontap" show="{{showAdd}}" maskClosable="{{false}}" title="添加纪念日" buttons="{{buttons}}">
+      <view slot="desc">
+        <mp-cells title="完善信息" footer="后续将上线提醒功能">
+          <label>
+            <mp-cell title="描述">
+              <input bindinput="addInputChange" value="{{add.desc}}" class="weui-input" placeholder="请输入有意义的描述" maxlength="10" />
+            </mp-cell>
+          </label>
+          <label>
+            <mp-cell title="日期">
+              <picker class="ml-2" mode="date" value="{{add.date}}" start="1800-09-01" end="4000-09-01" bindchange="bindAddDateChange">
+                <view class="color-black" wx:if="{{add.date}}">{{add.date}}</view>
+                <view class="color-grey" wx:else>点击选择</view>
+              </picker>
+            </mp-cell>
+          </label>
+        </mp-cells>
+      </view>
+    </mp-half-screen-dialog>
+    <!-- 弹窗编辑纪念日 -->
+    <mp-half-screen-dialog bindbuttontap="editButtontap" show="{{showEdit}}" maskClosable="{{false}}" title="修改-{{edit.o_desc}}" buttons="{{buttons}}">
+      <view slot="desc">
+        <mp-cells title="修改信息" footer="后续将上线提醒功能">
+          <label>
+            <mp-cell title="描述">
+              <input bindinput="editInputChange" value="{{edit.desc}}" class="weui-input" placeholder="请输入有意义的描述" maxlength="10" />
+            </mp-cell>
+          </label>
+          <label>
+            <mp-cell title="日期">
+              <picker class="ml-2" mode="date" value="{{edit.date}}" start="1800-09-01" end="4000-09-01" bindchange="bindEditDateChange">
+                <view class="color-black" wx:if="{{edit.date}}">{{edit.date}}</view>
+                <view class="color-grey" wx:else>点击选择</view>
+              </picker>
+            </mp-cell>
+          </label>
+        </mp-cells>
+      </view>
+    </mp-half-screen-dialog>
+  </view>
+</view>

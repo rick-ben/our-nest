@@ -8,6 +8,18 @@
 
   <!-- 主要内容 -->
   <view wx:if="{{!showLoading}}" class="main">
+    <!-- 顶部 -->
+    <image wx:if="{{loversList.length == 2}}" class="top-image" style="{{theme == 'dark' ? 'opacity: 0.2' : 'opacity: 0.8'}}" src="/static/images/background/home/top-default-image.png"></image>
+    <view wx:if="{{loversList.length == 2}}" class="top-body m-3">
+      <view class="d-flex justify-content-between m-3">
+        <image mode="widthFix" class="lovers-avatar border-radius-circle" src="{{loversList[0] ? loversList[0].avatar:'/static/images/icon/default_avatar.png'}}"></image>
+        <view class="d-flex flex-column text-center">
+          <text class="font-bold color-black">我们相恋了{{loveTime ? loveTime : '♾️'}}天</text>
+          <image class="top-image-bg1" mode="heightFix" src="/static/images/background/home/top-bg1.png"></image>
+        </view>
+        <image mode="widthFix" class="lovers-avatar border-radius-circle" src="{{loversList[1] ? loversList[1].avatar:'/static/images/icon/default_avatar.png'}}"></image>
+      </view>
+    </view>
     <!-- 文章部分 -->
     <view wx:for="{{articleList}}" wx:key="article_list" bindtap="toArticleDetail" data-id="{{item._id}}" class="bg-white m-3 border-radius-lg p-2">
       <!-- 发布者信息 -->

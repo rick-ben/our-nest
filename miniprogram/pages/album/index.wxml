@@ -2,6 +2,8 @@
 <view data-weui-theme="{{theme}}">
   <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
 
+  <image class="bg-image" src="/static/images/background/album/bg1.png" mode="widthFix"></image>
+
   <view class="d-flex flex-wrap m-3 mt-0 mr-0">
     <view class="mt-3 mr-3" wx:for="{{list}}" wx:key="albums" data-id="{{item._id}}" bindtap="toDetail">
       <view class="album-image bg-white border-radius-lg">

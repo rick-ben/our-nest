@@ -1,0 +1,8 @@
+/* model-common/pages/anniversary/index.wxss */
+.add-btn{
+  height: 130rpx;
+}
+
+input{
+  padding: 0 30rpx;
+}

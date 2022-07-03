@@ -1,12 +1,13 @@
 <!--pages/personal/index.wxml-->
 <view data-weui-theme="{{theme}}">
   <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
-  <cm-nav></cm-nav>
+
+  <image class="page-background" style="{{theme == 'dark' ? 'opacity: 0.2' : 'opacity: 0.8'}}" src="/static/images/background/personal/bg1.png"></image>
 
   <!-- 主要内容 -->
   <view wx:if="{{!showLoading}}" class="main">
     <!-- 头部信息 -->
-    <view class="d-flex align-items-center justify-content-between m-3">
+    <view class="d-flex align-items-center justify-content-between m-3" wx:if="{{style==1}}">
       <view class="d-flex align-items-center">
         <image mode="widthFix" class="publisher-avatar border-radius-lg" src="{{userInfo.avatar?userInfo.avatar:'/static/images/icon/default_avatar.png'}}"></image>
         <view class="d-flex flex-column ml-3">
@@ -20,9 +21,37 @@
       </view>
       <mp-icon class="mr-3" type="field" icon="contacts" size="30" color="{{colorGrey}}" bindtap="toSetting"></mp-icon>
     </view>
+    <!-- 头部信息-样式二 -->
+    <view class="d-flex flex-column align-items-center justify-content-center" wx:if="{{style==2}}">
+      <view class="mb-1">
+        <image mode="widthFix" class="publisher-avatar2 border-radius-circle" src="{{userInfo.avatar?userInfo.avatar:'/static/images/icon/default_avatar.png'}}"></image>
+      </view>
+      <text class="font-xl font-bold" bindtap="toSetting">{{userInfo.nickname?userInfo.nickname:'去更新资料'}}</text>
+      <view class="d-flex align-items-center">
+        <mp-icon type="field" icon="cellphone" size="20" color="{{colorPrimary}}"></mp-icon>
+        <view class="color-grey" wx:if="{{userInfo.phone}}">{{userInfo.phone}}</view>
+        <view class="color-grey" wx:else bindtap="toSetting">去设置手机号</view>
+      </view>
+    </view>
     <!-- 按钮导航 -->
-    <view class="buttons m-3">
+    <view class="buttons m-3" wx:if="{{style==1}}">
       <view class="button-item p-3 bg-white font-lg border-radius-base mb-3 {{item.ext_class}}" wx:for="{{btns}}" wx:key="main_buttons" data-index="{{index}}" bindtap="tapButton">{{item.name}}</view>
+    </view>
+    <!-- 按钮导航-样式二 -->
+    <view class="buttons2 p-3 bg-white border-radius-lg" wx:if="{{style==2}}">
+      <block wx:for="{{btns2}}" wx:key="main_buttons2">
+        <view class="button-item2 my-3 font-lg {{item.ext_class}}" data-index="{{index}}" bindtap="tapButton">
+          <image class="button-item2-icon mr-2" src="{{item.icon}}" mode="widthFix"></image>
+          <view class="flex-grow-1">{{item.name}}</view>
+          <mp-icon icon="arrow" size="13" color="{{colorGrey}}"></mp-icon>
+        </view>
+        <view class="split-line"></view>
+      </block>
+    </view>
+
+    <!-- 底部描述 -->
+    <view class="text-center">
+      <text class="color-grey">v{{versionNum}}</text>
     </view>
   </view>
 </view>

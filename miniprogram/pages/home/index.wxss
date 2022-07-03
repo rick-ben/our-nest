@@ -31,3 +31,29 @@
 .publisher-location{
   color: var(--nest-PRIMARY);
 }
+
+.top-image{
+  position: absolute;
+  top: 0;
+  width: 100%;
+  height: 700rpx;
+  z-index: -10;
+  border-radius: 0 0 30rpx 30rpx;
+}
+
+.top-image-bg1{
+  height: 50rpx;
+  width: auto;
+}
+
+.top-body{
+  height: 300rpx;
+  margin-top: 100rpx;
+}
+
+.lovers-avatar{
+  width: 100rpx;
+  height: 100rpx;
+  box-shadow: 0 0 10px #FEB5B6;
+  border: solid #ffffff 2px;
+}

@@ -62,8 +62,21 @@
   max-height: 200rpx;
 }
 
+.comment-btn{
+  font-size: 34rpx !important;
+  width: 140rpx !important;
+}
+
 ::-webkit-scrollbar{
   width: 0;
   height: 0;
   color: transparent;
+}
+
+.bg-image{
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  opacity: 0.2;
 }

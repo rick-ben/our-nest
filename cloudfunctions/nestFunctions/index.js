@@ -2,6 +2,7 @@ const getOpenId = require('./getOpenId/index');
 const getUserInfo = require('./getUserInfo/index');
 const addPhotos = require('./addPhotos/index');
 const delPhotos = require('./delPhotos/index');
+const getAnniversary = require('./getAnniversary/index');
 
 // 云函数入口函数
 exports.main = async (event, context) => {
@@ -14,5 +15,10 @@ exports.main = async (event, context) => {
       return await addPhotos.main(event, context);
     case 'delPhotos':
       return await delPhotos.main(event, context);
+    case 'getAnniversary':
+      return await getAnniversary.main(event, context);
+    default:
+      console.error('云函数调用错误，未找到入口');
+      break;
   }
 };

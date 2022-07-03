@@ -2,6 +2,7 @@
 <view data-weui-theme="{{theme}}">
   <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
   <mp-gallery show="{{showGallery}}" imgUrls="{{info.images}}" showDelete="{{false}}" current="{{showImageIndex}}"></mp-gallery>
+  <image class="bg-image" src="/static/images/background/album/bg1.png" mode="widthFix"></image>
   <!-- 默认样式 -->
   <view wx:if="{{!showLoading}}" class="main">
     <swiper wx:if="{{info.images.length >= 1}}" class="main-swiper" indicator-dots="{{true}}" autoplay="{{true}}" interval="2000" duration="500" easing-function="easeInCubic">

@@ -412,7 +412,7 @@ export function modal(title, cnt = '', firt = '确定', cant = false) {
       cancelText: cant ? cant : '',
       cancelColor: '#333',
       confirmText: firt,
-      confirmColor: '#07c160',
+      confirmColor: '#48c7fe',
       success: function (data) {
         if (data.confirm) {
           reslove();

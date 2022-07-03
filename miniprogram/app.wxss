@@ -84,13 +84,13 @@ page {
 	--nest-FG: #f6f6f6;
 	--nest-BG: #1f1f1f;
 	--nest-GREY: #7c7c7c;
-	--nest-WHITE: hsla(0, 0%, 100%, .1);
+  --nest-WHITE: #303030;
 	--nest-PRIMARY: #47a4cc;
 	--nest-PRIMARY-DISABLED: #8db4c5;
 	--nest-ORANGE: rgba(255, 149, 0, .6);
 	--nest-GREEN: rgba(52, 199, 89, .6);
 	--nest-RED: rgba(255, 59, 48, .6);
-	--nest-BLACK: rgba(51, 51, 51, .6);
+	--nest-BLACK: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -113,10 +113,20 @@ page {
 	justify-content: flex-start;
 }
 
+/* 底部安全距离 */
+.inset-bottom{
+  padding-bottom: constant(safe-area-inset-bottom);
+	padding-bottom: env(safe-area-inset-bottom);
+}
+
 /* 替换weui默认样式 */
 
+.weui-loadmore_line{
+  border-top: none !important;
+}
+
 .weui-loadmore__tips{
-	background-color: var(--nest-BG) !important;
+	background-color: transparent !important;
 }
 
 /* 替换weui默认样式 */

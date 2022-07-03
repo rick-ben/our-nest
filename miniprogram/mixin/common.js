@@ -2,6 +2,8 @@ import { modal } from "../utils/util";
 const httpApi = require('../service/http.api');
 module.exports = {
   data: {
+    error: '',
+    versionNum: '1.5.0',
     version: 'develop', //小程序版本：develop=开发版；trial=体验版；release=线上版本
     isIPhone: false, // 是否是苹果设备
     isAndroid: false, // 是否是安卓设备
@@ -9,6 +11,8 @@ module.exports = {
     options: {},  //页面启动参数
     colorPrimary: "#48c7fe",  //主色
     colorGrey: "#909399", //灰色
+    colorWhite: "#ffffff", //白色
+    colorBlack: "#333333", //黑色
   },
   /**
    * 请求接口
@@ -141,7 +145,9 @@ module.exports = {
     if (theme == 'dark') {
       this.setData({
         colorPrimary: "#47a4cc",
-        colorGrey: "#7c7c7c"
+        colorGrey: "#7c7c7c",
+        colorWhite: "#303030",
+        colorBlack: "#ffffff"
       });
       wx.setNavigationBarColor({
         backgroundColor: '#1f1f1f',
