@@ -3,7 +3,7 @@ const httpApi = require('../service/http.api');
 module.exports = {
   data: {
     error: '',
-    versionNum: '1.5.0',
+    versionNum: '1.6.0',
     version: 'develop', //小程序版本：develop=开发版；trial=体验版；release=线上版本
     isIPhone: false, // 是否是苹果设备
     isAndroid: false, // 是否是安卓设备
