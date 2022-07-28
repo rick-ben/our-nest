@@ -6,10 +6,6 @@
   width: auto !important;
 }
 
-.avatar-btn:hover{
-  /* background-color: unset !important; */
-}
-
 .avatar-image{
   width: 100rpx;
   height: 100rpx;
