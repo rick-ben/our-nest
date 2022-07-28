@@ -50,7 +50,7 @@
     </view>
 
     <!-- 底部描述 -->
-    <view class="text-center">
+    <view class="text-center" wx:if="{{versionNum}}">
       <text class="color-grey">v{{versionNum}}</text>
     </view>
   </view>

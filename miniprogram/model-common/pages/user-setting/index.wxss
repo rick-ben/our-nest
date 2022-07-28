@@ -1,5 +1,15 @@
 /* model-common/pages/user-setting/index.wxss */
 
+.avatar-btn{
+  padding: 0 !important;
+  margin: 0 !important;
+  width: auto !important;
+}
+
+.avatar-btn:hover{
+  /* background-color: unset !important; */
+}
+
 .avatar-image{
   width: 100rpx;
   height: 100rpx;

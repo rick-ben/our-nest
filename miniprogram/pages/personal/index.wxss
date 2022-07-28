@@ -19,6 +19,8 @@
 .publisher-avatar2{
   width: 160rpx;
   height: 160rpx;
+  border: 2px #ffffff solid;
+  box-shadow: #f6f6f6 0rpx 0rpx 50rpx;
 }
 
 .buttons{

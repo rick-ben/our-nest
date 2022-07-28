@@ -16,7 +16,7 @@ App({
         traceUser: true,
       });
     }
-    // 获取当前信息
+    // 获取当前系统信息
     wx.getSystemInfo({
       success: (result) => {
         _this.globalData.sys = result;
@@ -29,6 +29,9 @@ App({
         _this.globalData.launchReady = true;
       }
     })
+    const accountInfo = wx.getAccountInfoSync();
+    _this.globalData.sys.mini = accountInfo.miniProgram;
+    console.log(_this.globalData.sys)
     // 监听系统主题变化
     wx.onThemeChange((themeResult) => {
       _this.themeChanged(themeResult.theme)

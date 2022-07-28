@@ -1,5 +1,5 @@
 // model-common/pages/user-setting/index.js
-import { loading, modal, stringLength } from "../../../utils/util";
+import { loading, modal, stringLength, uploadMedia } from "../../../utils/util";
 // 连接云数据库
 const db = wx.cloud.database();
 // 获取集合的引用
@@ -43,19 +43,22 @@ Page({
   },
 
   /**
-   * 更新用户信息
+   * 选择新的头像
+   * @param {*} event 
    */
-  updateUserInfo() {
-    wx.getUserProfile({
-      desc: '用于完善会员资料',
-      success: (res) => {
-        let user = res.userInfo;
-        let setinfo = {};
-        setinfo['userInfo.nickname'] = user.nickName;
-        setinfo['userInfo.avatar'] = user.avatarUrl;
-        this.setData(setinfo);
-      }
-    })
+  changeAvatar(event){
+    let _this = this;
+    let setinfo = {};
+    loading('头像上传中...');
+    const avatarUrl = event.detail.avatarUrl;
+    uploadMedia('avatar', avatarUrl).then(fileId=>{
+      wx.hideLoading();
+      setinfo['userInfo.avatar'] = fileId;
+      _this.setData(setinfo);
+    }).catch((e) => {
+      wx.hideLoading();
+      modal('提示','头像上传失败，请重试');
+    });
   },
 
   /**

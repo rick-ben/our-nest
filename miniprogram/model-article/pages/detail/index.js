@@ -286,7 +286,7 @@ Page({
             }
           })
         } else {
-          console.log('未配置需要通知的用户');
+          console.error('未配置需要通知的用户');
         }
       })
       _this.setData({

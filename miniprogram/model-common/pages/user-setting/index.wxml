@@ -5,24 +5,23 @@
     <mp-form id="form" rules="{{rules}}" models="{{formData}}">
       <mp-cells title="头像昵称">
         <mp-cell>
-          <view class="d-flex align-items-center justify-content-between">
+          <view class="d-flex align-items-center">
             <view slot="title" class="d-flex align-items-center">
-              <image class="avatar-image mr-2 border-radius-lg" src="{{userInfo.avatar?userInfo.avatar:'/static/images/icon/default_avatar.png'}}"></image>
-              <text class="font-xl font-bold">{{userInfo.nickname?userInfo.nickname:'请更新'}}</text>
-            </view>
-            <view class="d-flex align-items-center">
-              <button class="weui-btn" type="primary" size="mini" bindtap="updateUserInfo">更新</button>
+              <button class="avatar-btn" open-type="chooseAvatar" bindchooseavatar="changeAvatar">
+                <image class="avatar-image mr-3 border-radius-lg" src="{{userInfo.avatar?userInfo.avatar:'/static/images/icon/default_avatar.png'}}"></image>
+              </button>
+              <input bindblur="formInputChange" data-field="nickname" class="py-3 font-xl font-bold" type="nickname" value="{{userInfo.nickname}}" placeholder="请填写昵称"></input>
             </view>
           </view>
         </mp-cell>
       </mp-cells>
-      <mp-cells title="基本信息" wx:if="{{version == 'release'}}">
+      <mp-cells title="基本信息">
         <label>
           <mp-cell prop="alias" title="别名">
             <input bindinput="formInputChange" data-field="alias" class="weui-input" value="{{userInfo.alias}}" placeholder="请输入别名" />
           </mp-cell>
         </label>
-        <label>
+        <label wx:if="{{version == 'release'}}">
           <mp-cell prop="mobile" title="手机号">
             <input bindinput="formInputChange" data-field="phone" class="weui-input" value="{{userInfo.phone}}" placeholder="请输入手机号" />
           </mp-cell>

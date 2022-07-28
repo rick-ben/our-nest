@@ -3,8 +3,8 @@ const httpApi = require('../service/http.api');
 module.exports = {
   data: {
     error: '',
-    versionNum: '1.6.0',
-    version: 'develop', //小程序版本：develop=开发版；trial=体验版；release=线上版本
+    versionNum: '',
+    version: '', //小程序版本：develop=开发版；trial=体验版；release=线上版本
     isIPhone: false, // 是否是苹果设备
     isAndroid: false, // 是否是安卓设备
     theme: 'light', //主题：light=白色；dark=黑色
@@ -37,15 +37,17 @@ module.exports = {
    * 获取当前小程序版本
    */
   getVersion() {
+    const mini = getApp().globalData.sys.mini;
     this.setData({
-      version: __wxConfig.envVersion
+      version: mini.envVersion,
+      versionNum: mini.version
     })
   },
   /**
    * 判断当前小程序是否是开发版本
    */
   isDevelop() {
-    if (__wxConfig.envVersion == 'develop') return true;
+    if (this.version == 'develop') return true;
     return false;
   },
   /**
@@ -91,7 +93,7 @@ module.exports = {
       setinfo['isAndroid'] = true;
     }
     // 设置用户信息
-    if (app.globalData.userInfo || app.globalData.scene == 1154){
+    if (app.globalData.userInfo?._openid || app.globalData.scene == 1154){
       setinfo['userInfo'] = app.globalData.userInfo;
       success(that, setinfo);
     } else {

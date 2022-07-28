@@ -4,6 +4,14 @@
 >
 > 个人主体小程序可通过
 
+
+
+## 通知
+
+因腾讯云开发基础费用调整，故本项目停止更新迭代（不是不能用，只是我觉得太贵了不划算），将使用uniapp重新做一套新系统，预计在2022年12月左右上线（因精力有限可能会延期），后续新项目地址将更新到本项目文档中，敬请关注。
+
+腾讯云开发费用调整公告：https://developers.weixin.qq.com/community/minihome/doc/0000a680588d3891fa2ec250c51401
+
 ## 功能体验
 
 ![微信扫码体验](./miniprogram/static/images/Qrcode.jpg)
@@ -28,14 +36,12 @@
 - [x] 访客只能查看公开相册（保护隐私）
 - [x] 访客只能查看公开相册内的最近20个照片或视频（保护隐私）
 - [x] 相册可设置成员（成员只能查看、不能上传和修改配置）
-- [ ] 相册设置管理员（管理员可查看、上传、删除）
 - [x] 动态图片有一个专门的相册保存，归属人可以删除里面的图片，但是请谨慎删除（删除后动态图文中会显示异常，建议删除没有用到的图片）
 - [x] 程序异常时，用户可自行清除小程序缓存
 - [x] 可通过退出小程序来关闭当前小程序窗口
 - [x] 可设置头像和手机号等个人信息
 - [x] 动态可发表评论
 - [x] 纪念日管理功能
-- [ ] 应用管理功能（可自定义应用）
 - [x] 发布文章提醒（付费）
 - [x] 评论文章提醒（付费）
 
@@ -81,7 +87,7 @@ module.exports = {
   "wx_cloud_env_trial": "xxxxxxx",//测试环境
   "wx_cloud_env_release": "xxxxxxx",//线上环境
   // 小窝应用信息（用于提醒服务，发布文章，评论文章时提醒，如需开通请联系：jidekf）
-  // 提醒服务收费标准：邮件提醒（0.04/次），短信提醒(0.08/次)，公众号提醒（0.01/次，不支持直接打开）
+  // 提醒服务收费标准：邮件提醒（0.04/次），公众号提醒（0.01/次，不支持直接打开）
   "nest_app_id": "",
   "nest_app_key": ""
 };
@@ -96,7 +102,8 @@ const base = require('./base_config');
  * 获取请求地址
  */
 export function getApiBaseUrl() {
-  switch (__wxConfig.envVersion) {
+  const accountInfo = wx.getAccountInfoSync();
+  switch (accountInfo.miniProgram.envVersion) {
     case 'develop':
       if (base.trial_test) {
         return base.request_trial;
@@ -118,7 +125,8 @@ export function getApiBaseUrl() {
  * 获取微信云开发环境ID
  */
 export function getWxCloudEnv() {
-  switch (__wxConfig.envVersion) {
+  const accountInfo = wx.getAccountInfoSync();
+  switch (accountInfo.miniProgram.envVersion) {
     case 'develop':
       if (base.trial_test) {
         return base.wx_cloud_env_trial;
@@ -194,7 +202,9 @@ export function getWxCloudEnv() {
 ##### 集合名：configLoversBase
 
 ```json
+//按格式新增一条数据
 {"flag":1.0,"start_time":{"$date":"2021-10-19T00:00:00Z"},"desc":"相恋日"}
+//$date为date类型，不要直接导入json，按格式创建
 ```
 
 
@@ -248,12 +258,6 @@ auth_notice : "bool值，表示是否可以接收通知，为false时表示不�
 2. 在`users`表中手动设置`email`字段（没有则添加），或上线后在个人中心中设置
 3. 已经在使用的设置后，需要在个人中心清除缓存再重启小程序使用
 
-#### 短信提醒
-
-1. 联系开通
-2. 在`users`表中手动设置`phone`字段，或上线后在个人中心中设置
-3. 已经在使用的设置后，需要在个人中心清除缓存再重启小程序使用
-
 #### 公众号提醒
 
 1. 联系开通
@@ -271,11 +275,3 @@ auth_notice : "bool值，表示是否可以接收通知，为false时表示不�
 至此，小程序就可以上传发布使用了！有问题请加微信：`jidekf`
 
 > 注意：部署后请在个人中心设置自己的手机号，并到`users`数据库中修改你自己这条记录的权限，加入的成员均需要手动配置！
-
-## 打赏
-
-请我喝杯奶茶？
-
-| ![](./miniprogram/static/images/zhifubao.jpg) | ![](./miniprogram/static/images/weixin.jpg) |
-| ------------------------------------------- | ----------------------------------------- |
-

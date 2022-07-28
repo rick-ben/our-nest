@@ -1,5 +1,5 @@
 // article/pages/deploy/index.js
-import { getSysPermission, loading, modal, setString, stringLength, toast } from "../../../utils/util";
+import { getSysPermission, loading, modal, setString, stringLength, toast, uploadMedia } from "../../../utils/util";
 const base = require('../../../config/base_config');
 // 连接云数据库
 const db = wx.cloud.database();
@@ -86,20 +86,12 @@ Page({
     let uploadNum = 0;
     let urls = [];
     let fileList = this.data.files;
+    let fileListLen = fileList.length;
     for (let i = 0; i < fileLen; i++) {
       const element = tempFilePaths[i];
-      let pattern = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
-      let filePath = pattern.exec(element);
-      let name = filePath[0];
-      // 将图片上传至云存储空间
-      wx.cloud.uploadFile({
-        // 指定上传到的云路径
-        cloudPath: 'images/' + name,
-        // 指定要上传的文件的小程序临时文件路径
-        filePath: element
-      }).then(res => {
-        urls.push(res.fileID);
-        fileList.push(res.fileID);
+      uploadMedia('images', element).then(fileID=>{
+        urls[i] = fileID;
+        fileList[fileListLen+i] = fileID;
         uploadNum++;
       }).catch((e) => {
         console.log(e);
@@ -254,7 +246,7 @@ Page({
             }
           })
         } else {
-          console.log('未配置需要通知的用户');
+          console.error('未配置需要通知的用户');
         }
       })
       toast('发表成功！', 2000).then(ret=>{

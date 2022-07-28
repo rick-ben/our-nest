@@ -1,6 +1,6 @@
 // model-album/pages/setting/index.js
 
-const { toast, modal, isNetworkUrl, loading } = require('../../../utils/util');
+const { toast, modal, isNetworkUrl, loading, uploadMedia } = require('../../../utils/util');
 
 // 连接云数据库
 const db = wx.cloud.database();
@@ -155,22 +155,11 @@ Page({
     }
     if (data.cover && isNetworkUrl(data.cover) == false) {
       const element = data.cover;
-      let pattern = /[a-zA-Z0-9][-a-zA-Z0-9]{0,62}(\.[a-zA-Z0-9][-a-zA-Z0-9]{0,62})+\.?/;
-      let filePath = pattern.exec(element);
-      let name = filePath[0];
-      // 将图片上传至云存储空间
-      wx.cloud.uploadFile({
-        // 指定上传到的云路径
-        cloudPath: 'album-covers/' + name,
-        // 指定要上传的文件的小程序临时文件路径
-        filePath: element
-      }).then(res => {
-        updateData.cover = res.fileID;
+      uploadMedia('album-covers', element).then(fileID=>{
+        updateData.cover = fileID;
         update(_this, updateData);
       }).catch((e) => {
-        wx.hideLoading({
-          success: (res) => {},
-        })
+        wx.hideLoading();
         console.log('上传图片失败');
       });
     } else {
