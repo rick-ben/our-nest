@@ -37,7 +37,7 @@
         <image mode="aspectFit" class="content-thumbnail" wx:if="{{item.files && item.files.length >= 1}}" src="{{item.files[0]}}"></image>
       </view>
       <!-- 其他信息 -->
-      <view class="d-flex align-items-center justify-content-between">
+      <view class="d-flex align-items-center justify-content-between" wx:if="{{item.location && item.location.name}}">
         <view class="publisher-location d-flex align-items-center">
           <mp-icon type="field" icon="location" size="15" color="{{colorPrimary}}"></mp-icon>
           <text class="font-base ml-1">{{item.location.name}}</text>

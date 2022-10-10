@@ -191,9 +191,6 @@ Page({
       } else if (this.data.files.length <= 0 && !this.data.onlyText) {
         setinfo['errorTip'] = '请选择图片';
         _this.setData(setinfo);
-      } else if (!this.data.location) {
-        setinfo['errorTip'] = '请选择所在位置';
-        _this.setData(setinfo);
       } else {
         setinfo['errorTip'] = '';
         _this.setData(setinfo);

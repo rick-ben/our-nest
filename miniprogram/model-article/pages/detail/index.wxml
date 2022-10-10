@@ -24,7 +24,7 @@
           <text class="font-xl font-bold">{{info.user.nickname}}</text>
           <view class="font-base color-grey">{{info.time}}</view>
         </view>
-        <view class="publisher-location" bindtap="toLocation">
+        <view class="publisher-location" bindtap="toLocation" wx:if="{{info.location && info.location.name}}">
           <mp-icon type="field" icon="location" size="15" color="{{colorPrimary}}"></mp-icon>
           <text class="font-base ml-1">{{info.location.name}}</text>
         </view>

@@ -10,11 +10,11 @@
         <mp-cell wx:if="{{!onlyText}}">
             <mp-uploader bindfail="uploadError" binddelete="deleteFile" bindsuccess="uploadSuccess" select="{{selectFile}}" upload="{{uplaodFile}}" max-count="9" title="图片上传"></mp-uploader>
         </mp-cell>
-        <mp-cells>
+        <!-- <mp-cells>
             <mp-cell link value="{{location?location.name:'所在位置'}}" bindtap="location">
                 <mp-icon class="mr-3" slot="icon" type="outline" icon="location" size="22" color="{{colorBlack}}"></mp-icon>
             </mp-cell>
-        </mp-cells>
+        </mp-cells> -->
         <view class="deploy-btn">
             <button class="weui-btn" type="primary" bindtap="submitMain" disabled="{{errorTip != ''}}">发表</button>
             <view class="font-sm color-grey text-center mt-3">{{errorTip}}</view>
