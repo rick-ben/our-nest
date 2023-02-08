@@ -3,7 +3,7 @@
 <view data-weui-theme="{{theme}}">
   <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
   <cm-nav>
-    <view slot="left" bindtap="toDeploy" bindlongtap="toDeployText">小窝({{articleTotal}})</view>
+    <view slot="left" bindtap="toDeploy" bindlongpress="toDeployText">小窝({{articleTotal}})</view>
   </cm-nav>
 
   <!-- 主要内容 -->
