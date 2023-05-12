@@ -38,7 +38,8 @@
     "showES6CompileOption": false,
     "useCompilerPlugins": false,
     "ignoreUploadUnusedFiles": true,
-    "useStaticServer": true
+    "useStaticServer": true,
+    "condition": false
   },
   "appid": "wx80a32a7679fb22d8",
   "projectname": "%E6%AC%A2%E5%AE%9D%E7%9A%84%E5%B0%8F%E7%AA%9D",
