@@ -15,13 +15,13 @@
           </view>
         </mp-cell>
       </mp-cells>
-      <mp-cells title="基本信息">
+      <mp-cells title="基本信息" wx:if="{{version == 'release'}}">
         <label>
           <mp-cell prop="alias" title="别名">
             <input bindinput="formInputChange" data-field="alias" class="weui-input" value="{{userInfo.alias}}" placeholder="请输入别名" />
           </mp-cell>
         </label>
-        <label wx:if="{{version == 'release'}}">
+        <label>
           <mp-cell prop="mobile" title="手机号">
             <input bindinput="formInputChange" data-field="phone" class="weui-input" value="{{userInfo.phone}}" placeholder="请输入手机号" />
           </mp-cell>

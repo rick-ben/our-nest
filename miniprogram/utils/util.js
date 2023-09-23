@@ -196,49 +196,6 @@ export function getId() {
 }
 
 /**
- * 获取用户系统授权
- * @param {*} scope 权限标识
- */
-export function getSysPermission(scope) {
-  let scopeList = {
-    'scope.userInfo': '用户信息',
-    'scope.userLocation': '地理位置',
-    'scope.userLocationBackground': '后台定位',
-    'scope.werun': '微信运动步数',
-    'scope.record': '录音功能',
-    'scope.writePhotosAlbum': '保存到相册',
-    'scope.camera': '摄像头'
-  }
-  return new Promise((reslove, reject) => {
-    wx.authorize({
-      scope: scope,
-      success() {
-        reslove();
-      },
-      fail() {
-        modal("提示", '您未授权' + scopeList[scope] + '，功能将无法使用', "去授权", "取消").then(ret => {
-          wx.openSetting({
-            success: (res) => {
-              if (!res.authSetting[scope]) {
-                modal("提示", "您未授权" + scopeList[scope] + "，功能将无法使用");
-                reject();
-              } else {
-                reslove();
-              }
-            },
-            fail: function () {
-              reject();
-            }
-          })
-        }).catch(err => {
-          reject();
-        })
-      }
-    })
-  })
-}
-
-/**
  * 获取指定范围的随机数
  * @param {*} minNum 
  * @param {*} maxNum 
@@ -374,43 +331,6 @@ export function loading(title = '加载中...', m = true) {
  */
 export function trim(s) {
   return s ? s.replace(/(^\s*)|(\s*$)/g, "") : s;
-}
-
-/**
- * 保存图片文件到本机
- * @param imageUrl 图片路径
- */
-export function savePhotoFile(imageUrl) {
-  return new Promise((reslove, reject) => {
-    getSysPermission('scope.writePhotosAlbum').then(res => {
-      exportFile();
-    }).catch(err => {
-      reject();
-    })
-    // 获取文件临时地址
-    function exportFile() {
-      loading("保存中...");
-      downloadFile(imageUrl)
-        .then(url => {
-          save(url);
-        })
-        .catch(res => {
-          reject();
-        })
-    }
-    // 保存
-    function save(filePath) {
-      wx.saveImageToPhotosAlbum({
-        filePath: filePath,
-        success: (res) => {
-          reslove();
-        },
-        fail: (err) => {
-          reject();
-        }
-      })
-    }
-  })
 }
 
 /**

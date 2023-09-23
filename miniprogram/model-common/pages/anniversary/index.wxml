@@ -26,7 +26,7 @@
     <!-- 弹窗添加纪念日 -->
     <mp-half-screen-dialog bindbuttontap="addButtontap" show="{{showAdd}}" maskClosable="{{false}}" title="添加纪念日" buttons="{{buttons}}">
       <view slot="desc">
-        <mp-cells title="完善信息" footer="后续将上线提醒功能">
+        <mp-cells title="完善信息" footer="欢迎使用 蓝桉恋爱记 拥有更多功能">
           <label>
             <mp-cell title="描述">
               <input bindinput="addInputChange" value="{{add.desc}}" class="weui-input" placeholder="请输入有意义的描述" maxlength="10" />

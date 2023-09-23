@@ -37,11 +37,7 @@
   "useExtendedLib": {
     "weui": true
   },
-  "permission": {
-    "scope.userLocation": {
-      "desc": "你的位置信息将用于文章内容展示"
-    }
-  },
+  "permission": {},
   "tabBar": {
     "color": "#333333",
     "selectedColor": "#48c7fe",

@@ -1,5 +1,5 @@
 // article/pages/deploy/index.js
-import { getSysPermission, loading, modal, setString, stringLength, toast, uploadMedia } from "../../../utils/util";
+import { loading, modal, setString, stringLength, toast, uploadMedia } from "../../../utils/util";
 const base = require('../../../config/base_config');
 // 连接云数据库
 const db = wx.cloud.database();
@@ -156,27 +156,6 @@ Page({
     }).catch((e) => {
       console.log(e)
     });
-  },
-  /**
-   * 选择地址
-   */
-  location(){
-    let _this = this;
-    getSysPermission('scope.userLocation').then(res=>{
-      wx.chooseLocation({
-        latitude: 0,
-      }).then(addres=>{
-        let obj = {
-          name: addres.name,
-          address: addres.address,
-          latitude: addres.latitude,
-          longitude: addres.longitude
-        }
-        _this.setData({
-          location: obj
-        })
-      })
-    })
   },
   /**
    * 检查文章内容是否已填完

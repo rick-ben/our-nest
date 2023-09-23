@@ -15,7 +15,7 @@
           <view class="d-flex align-items-center">
             <mp-icon type="field" icon="cellphone" size="20" color="{{colorPrimary}}"></mp-icon>
             <view class="color-grey" wx:if="{{userInfo.phone}}">{{userInfo.phone}}</view>
-            <view class="color-grey" wx:else bindtap="toSetting">去设置手机号</view>
+            <view class="color-grey" wx:else bindtap="toSetting">未设置手机号</view>
           </view>
         </view>
       </view>
@@ -30,7 +30,7 @@
       <view class="d-flex align-items-center">
         <mp-icon type="field" icon="cellphone" size="20" color="{{colorPrimary}}"></mp-icon>
         <view class="color-grey" wx:if="{{userInfo.phone}}">{{userInfo.phone}}</view>
-        <view class="color-grey" wx:else bindtap="toSetting">去设置手机号</view>
+        <view class="color-grey" wx:else bindtap="toSetting">未设置手机号</view>
       </view>
     </view>
     <!-- 按钮导航 -->

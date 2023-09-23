@@ -30,7 +30,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    console.log('%c感谢支持情侣小窝开源项目', 'background-color: yellow; color: black;font-size: 24px; font-weight: bold;padding: 5px 15px');
+    console.log('%c该项目的升级版为：蓝桉恋爱记 拥有更全面的功能，并且完全免费，欢迎使用','color: white; background-color: red; font-size: 20px; font-weight: bold;padding: 5px 15px');
+    console.log('%c下载地址 https://aini.love/app','color: black; background-color: yellow; font-size: 20px; font-weight: bold;padding: 5px 15px');
   },
 
   onReachBottom: function () {
@@ -82,7 +84,7 @@ Page({
           loversList: res.data
         })
       } else {
-        console.error('当前拥有发布权限的人数不足2人，首页顶部情侣专属内容将不显示，如有需要，请邀请你的另一半加入');
+        console.info('当前拥有发布权限的人数不足2人，首页顶部情侣专属内容将不显示，如有需要，请邀请你的另一半加入');
       }
     })
     //计算在一起的天数

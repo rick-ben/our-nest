@@ -31,7 +31,6 @@ App({
     })
     const accountInfo = wx.getAccountInfoSync();
     _this.globalData.sys.mini = accountInfo.miniProgram;
-    console.log(_this.globalData.sys)
     // 监听系统主题变化
     wx.onThemeChange((themeResult) => {
       _this.themeChanged(themeResult.theme)
