@@ -1,0 +1,18 @@
+<!--pages/install/index.wxml-->
+<view data-weui-theme="{{theme}}">
+  <mp-loading extClass="mp-loading" show="{{showLoading}}"></mp-loading>
+  <mp-cells ext-class="my-cells" title="部署状态">
+    <mp-cell wx:for="{{list}}" wx:key="title">
+      <view>{{item.title}}</view>
+      <view slot="footer" class="d-flex">
+        <block wx:if="{{!item.info}}">
+          <mp-icon wx:if="{{item.status}}" type="field" icon="done2" color="#03FA29" size="{{25}}"></mp-icon>
+          <mp-icon wx:else type="field" icon="help" color="#F70505" size="{{25}}" bind:tap="showTips" data-tips="{{item.tips}}"></mp-icon>
+        </block>
+        <block wx:else>
+          <mp-icon type="field" icon="info" color="#05BFFC" size="{{25}}" bind:tap="showTips" data-tips="{{item.tips}}"></mp-icon>
+        </block>
+      </view>
+    </mp-cell>
+  </mp-cells>
+</view>

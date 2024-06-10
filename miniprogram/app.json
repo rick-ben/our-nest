@@ -2,7 +2,8 @@
   "pages": [
     "pages/home/index",
     "pages/personal/index",
-    "pages/album/index"
+    "pages/album/index",
+    "pages/install/index"
   ],
   "subPackages": [
     {
@@ -31,7 +32,7 @@
     "backgroundColor": "#f3f4f6",
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#f3f4f6",
-    "navigationBarTitleText": "我们的小窝",
+    "navigationBarTitleText": "情侣小窝",
     "navigationBarTextStyle": "black"
   },
   "useExtendedLib": {

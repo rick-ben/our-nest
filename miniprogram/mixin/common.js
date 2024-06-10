@@ -83,6 +83,12 @@ module.exports = {
    * 初始化公共混入数据
    */
   initCommonData() {
+    // 安装部署成功后，请删除或屏蔽 下方 跳转代码
+    console.log('%c安装部署完成后，请删除或屏蔽"/mixin/common.js"第87行至90行代码','color: white; background-color: blue; font-size: 20px; font-weight: bold;padding: 5px 15px');
+    return wx.navigateTo({
+      url: '/pages/install/index',
+    })
+    // 安装部署成功后，请删除或屏蔽 上方 跳转代码
     let that = this;
     let app = getApp();
     let setinfo = {};

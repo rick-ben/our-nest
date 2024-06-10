@@ -32,7 +32,8 @@ Page({
   onLoad: function (options) {
     console.log('%c感谢支持情侣小窝开源项目', 'background-color: yellow; color: black;font-size: 24px; font-weight: bold;padding: 5px 15px');
     console.log('%c该项目的升级版为：蓝桉恋爱记 拥有更全面的功能，并且完全免费，欢迎使用','color: white; background-color: red; font-size: 20px; font-weight: bold;padding: 5px 15px');
-    console.log('%c下载地址 https://aini.love/app','color: black; background-color: yellow; font-size: 20px; font-weight: bold;padding: 5px 15px');
+    console.log('%c“蓝桉恋爱记”体验地址 https://aini.love/app','color: black; background-color: yellow; font-size: 20px; font-weight: bold;padding: 5px 15px');
+    console.log('%c安装部署遇到问题，请添加微信：jidekf','color: white; background-color: red; font-size: 20px; font-weight: bold;padding: 5px 15px');
   },
 
   onReachBottom: function () {
@@ -58,6 +59,14 @@ Page({
    * 页面数据初始化完成
    */
   initSuccess: function () {
+    if (this.data.version == 'develop') {
+      let homeTips = wx.getStorageSync('home-tips');
+      if (!homeTips) {
+        modal('提示','请查看教程更新 users 数据库集合中的用户权限，教程中搜索“数据表说明”', '确定', '不再提示').catch(err=>{
+          wx.setStorageSync('home-tips', true)
+        })
+      }
+    }
     this.loadDeployUsers();
     this.loadArticles();
   },
