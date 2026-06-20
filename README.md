@@ -224,5 +224,4 @@ npm install --save wx-server-sdk@latest --registry=https://registry.npm.taobao.o
 部署后请在个人中心设置手机号，并到 `users` 数据库中修改对应记录的权限。**所有加入的成员均需手动配置权限**。
 
 ---
-
-> 💡 **提示**：遇到问题请查阅 [产品介绍文档](/docs/lovers-nest-intro) 了解产品架构和功能概览。
+
