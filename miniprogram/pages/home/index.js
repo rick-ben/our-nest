@@ -31,9 +31,6 @@ Page({
    */
   onLoad: function (options) {
     console.log('%c感谢支持情侣小窝开源项目', 'background-color: yellow; color: black;font-size: 24px; font-weight: bold;padding: 5px 15px');
-    console.log('%c该项目的升级版为：蓝桉恋爱记 拥有更全面的功能，并且完全免费，欢迎使用','color: white; background-color: red; font-size: 20px; font-weight: bold;padding: 5px 15px');
-    console.log('%c“蓝桉恋爱记”体验地址 https://aini.love/app','color: black; background-color: yellow; font-size: 20px; font-weight: bold;padding: 5px 15px');
-    console.log('%c安装部署遇到问题，请添加QQ：1848741639','color: white; background-color: red; font-size: 20px; font-weight: bold;padding: 5px 15px');
   },
 
   onReachBottom: function () {
