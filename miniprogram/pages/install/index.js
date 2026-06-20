@@ -120,7 +120,7 @@ Page({
   showTips(event){
     let value = event.target.dataset.tips;
     modal('提示',value, '确定','无法解决').catch(err=>{
-      modal('提示','无法解决请联系微信：jidekf')
+      modal('提示','无法解决请联系QQ：1848741639')
     })
   },
 

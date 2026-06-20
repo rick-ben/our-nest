@@ -1,68 +1,24 @@
 {
-  "setting": {},
-  "condition": {
-    "miniprogram": {
-      "list": [
-        {
-          "name": "发布新文章",
-          "pathName": "model-article/pages/deploy/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "文章详情",
-          "pathName": "model-article/pages/detail/index",
-          "query": "id=ca780ad5627f354d029957c10660445d",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "个人中心",
-          "pathName": "pages/personal/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "设置用户信息",
-          "pathName": "model-common/pages/user-setting/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "相册",
-          "pathName": "pages/album/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "动态相册",
-          "pathName": "model-album/pages/detail/index",
-          "query": "id=54ad1eea6207c77e0f1406771b092611",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "相册新建或编辑",
-          "pathName": "model-album/pages/setting/index",
-          "query": "id=efbc6d7162481478041b400140a6e3de",
-          "launchMode": "default",
-          "scene": null
-        },
-        {
-          "name": "纪念日",
-          "pathName": "model-common/pages/anniversary/index",
-          "query": "",
-          "launchMode": "default",
-          "scene": null
-        }
-      ]
-    }
+  "setting": {
+    "urlCheck": false,
+    "coverView": true,
+    "lazyloadPlaceholderEnable": false,
+    "skylineRenderEnable": false,
+    "preloadBackgroundData": false,
+    "autoAudits": false,
+    "useApiHook": true,
+    "showShadowRootInWxmlPanel": true,
+    "useStaticServer": true,
+    "useLanDebug": false,
+    "showES6CompileOption": false,
+    "compileHotReLoad": true,
+    "checkInvalidKey": true,
+    "ignoreDevUnusedFiles": true,
+    "bigPackageSizeSupport": false,
+    "useIsolateContext": true
   },
+  "condition": {},
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "libVersion": "2.24.7",
-  "projectname": "情侣小窝"
+  "projectname": "%E6%83%85%E4%BE%A3%E5%B0%8F%E7%AA%9D"
 }

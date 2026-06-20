@@ -39,11 +39,15 @@
     "useCompilerPlugins": false,
     "ignoreUploadUnusedFiles": true,
     "useStaticServer": true,
-    "condition": false
+    "condition": false,
+    "compileWorklet": false,
+    "localPlugins": false,
+    "swc": false,
+    "disableSWC": true
   },
-  "appid": "wx80a32a7679fb22d8",
+  "appid": "wxad2f48fcd1a01846",
   "projectname": "%E6%AC%A2%E5%AE%9D%E7%9A%84%E5%B0%8F%E7%AA%9D",
-  "libVersion": "2.22.0",
+  "libVersion": "2.24.7",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
   "condition": {
     "search": {
@@ -70,5 +74,6 @@
     "tabIndent": "insertSpaces",
     "tabSize": 2
   },
-  "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html"
+  "description": "项目配置文件，详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "simulatorPluginLibVersion": {}
 }
