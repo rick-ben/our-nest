@@ -1,9 +1,26 @@
-# Our Nest — WeChat Cloud Development Setup Guide
+<p align="center">
+  <img src="https://img.shields.io/badge/情侣小窝-Our%20Nest-ff69b4?style=for-the-badge" alt="Our Nest" />
+</p>
+
+<p align="center">
+  A WeChat Cloud Mini Program for couples — share moments, albums & anniversaries.
+</p>
+
+<p align="center">
+  No server needed, no domain required, built on WeChat Cloud — ready to go!
+</p>
+
+<p align="center">
+  <a href="./README.md">简体中文</a> · <a href="./README_EN.md">English</a>
+</p>
+
+---
+
+## 📖 Setup Guide
 
 > This guide will walk you through deploying the Our Nest WeChat Mini Program from scratch.
 
 ---
-
 ## Before You Begin
 
 Before starting the deployment, make sure you have:

@@ -1,9 +1,26 @@
-# 情侣小窝 — 微信云开发版安装部署教程
+<p align="center">
+  <img src="https://img.shields.io/badge/情侣小窝-Our%20Nest-ff69b4?style=for-the-badge" alt="情侣小窝" />
+</p>
+
+<p align="center">
+  情侣专属的微信云开发小程序，动态分享、相册共享、纪念日记录。
+</p>
+
+<p align="center">
+  无需服务器、无需域名、基于微信云开发、开箱即用！
+</p>
+
+<p align="center">
+  <a href="./README.md">简体中文</a> · <a href="./README_EN.md">English</a>
+</p>
+
+---
+
+## 📖 安装部署教程
 
 > 本教程将引导你从零开始部署情侣小窝微信小程序。
 
 ---
-
 ## 部署前准备
 
 在开始部署之前，请确保你已经：
