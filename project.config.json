@@ -46,7 +46,7 @@
     "disableSWC": true
   },
   "appid": "wxad2f48fcd1a01846",
-  "projectname": "%E6%AC%A2%E5%AE%9D%E7%9A%84%E5%B0%8F%E7%AA%9D",
+  "projectname": "%E6%83%85%E4%BE%A3%E5%B0%8F%E7%AA%9D",
   "libVersion": "2.24.7",
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate/",
   "condition": {

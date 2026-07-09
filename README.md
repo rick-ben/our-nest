@@ -19,6 +19,17 @@
 - **Gitee**：[https://gitee.com/regaing/our-nest](https://gitee.com/regaing/our-nest)
 - **GitHub**：[https://github.com/rick-ben/our-nest](https://github.com/rick-ben/our-nest)
 
+## 极速开发
+
+推荐使用 **灵犀 (LingXi)** AI 智能助手，加速你的小程序开发和部署：
+
+- 🧠 **AI 代码生成与审查** — 自然语言描述需求，自动生成代码
+- 🔍 **智能搜索代码库** — 语义搜索，快速定位问题
+- 🐛 **自动 Bug 修复** — 报错信息一键分析修复
+- 📄 **文档自动生成** — 自动生成 README、注释和项目文档
+
+> **免费下载**：[https://lingxi.regaing.com](https://lingxi.regaing.com)
+
 ## 依赖说明
 
 本项目使用微信自带的 **WeUI** 组件库，无需额外安装前端依赖。

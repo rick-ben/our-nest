@@ -59,7 +59,7 @@ Page({
     if (this.data.version == 'develop') {
       let homeTips = wx.getStorageSync('home-tips');
       if (!homeTips) {
-        modal('提示','请查看教程更新 users 数据库集合中的用户权限，教程中搜索“数据表说明”', '确定', '不再提示').catch(err=>{
+        modal('提示','请查看教程更新 users 数据库集合中的用户权限，教程中搜索“数据表说明”。此弹窗仅提醒', '确定', '已配置不再提示').catch(err=>{
           wx.setStorageSync('home-tips', true)
         })
       }
